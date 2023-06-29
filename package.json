@@ -1,0 +1,35 @@
+{
+  "name": "stores",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/image": "^0.17.1",
+    "@astrojs/mdx": "^0.19.7",
+    "@astrojs/react": "^2.2.1",
+    "@astrojs/tailwind": "^4.0.0",
+    "@astrojs/vercel": "^3.5.1",
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
+    "@nanostores/react": "^0.7.1",
+    "@types/marked": "^5.0.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "astro": "^2.7.2",
+    "marked": "^5.1.0",
+    "nanostores": "^0.9.3",
+    "next-themes": "^0.2.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tailwindcss": "^3.0.24"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2"
+  }
+}

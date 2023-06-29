@@ -1,0 +1,53 @@
+---
+import { HeaderW0 } from '@components/react/HeaderW0';
+import { ShoppingCarts } from '@components/react/ShoppingCarts';
+import { ThemeProvider } from 'next-themes'
+import "@styles/globals.css";
+import type { Site } from '@interfaces/site';
+import { type, uid, url, v } from '@utils/const';
+
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+const site: Site = await fetch(
+  `${url}/api/${v}/${type}/query/sites/${uid}`
+).then((response) => response.json());
+
+console.log('site', site)
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<ThemeProvider client:load attribute="class" defaultTheme={site.data.theme.light} themes={site.data.theme.themes}>
+			<HeaderW0  client:load site={site} />
+			<ShoppingCarts client:load />
+			<slot />
+		</ThemeProvider>
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 124, 58, 237;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background-color: #F6F6F6;
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+</style>
