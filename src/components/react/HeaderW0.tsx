@@ -269,28 +269,9 @@ export  function HeaderW0(props: Props) {
 
                               <div className="relative bg-white z-10">
                                 <div className="mx-auto max-w-7xl px-8">
-                                  <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
-                                    <div className="col-start-2 grid grid-cols-2 gap-x-8">
-                                      {featured.map((item) => (
-                                        <div key={item.name} className="group relative text-base sm:text-sm">
-                                          <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                            <img
-                                              src={item.imageSrc}
-                                              alt={item.imageAlt}
-                                              className="object-cover object-center"
-                                            />
-                                          </div>
-                                          <a href={item.href} className="mt-6 block font-medium text-gray-900">
-                                            <span className="absolute inset-0 z-10" aria-hidden="true" />
-                                            {item.name}
-                                          </a>
-                                          <p aria-hidden="true" className="mt-1">
-                                            Shop now
-                                          </p>
-                                        </div>
-                                      ))}
-                                    </div>
-                                    <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
+                                  <div className="grid grid-cols-5 gap-x-8 gap-y-10 py-16">
+                                    
+                                    <div className="col-span-4 grid grid-cols-5 gap-x-8 gap-y-10 text-sm">
                                       {category.categories.map((category0, i) => (
                                         <div key={i}>
                                           <p id={`${category0.slug}-heading`} className="font-medium text-gray-900">
@@ -309,6 +290,26 @@ export  function HeaderW0(props: Props) {
                                               </li>
                                             ))}
                                           </ul> 
+                                        </div>
+                                      ))}
+                                    </div>
+                                    <div className=" grid grid-cols-1 gap-x-8">
+                                      {featured.map((item) => (
+                                        <div key={item.name} className="group relative text-base sm:text-sm">
+                                          <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                                            <img
+                                              src={item.imageSrc}
+                                              alt={item.imageAlt}
+                                              className="object-cover object-center"
+                                            />
+                                          </div>
+                                          <a href={item.href} className="mt-6 block font-medium text-gray-900">
+                                            <span className="absolute inset-0 z-10" aria-hidden="true" />
+                                            {item.name}
+                                          </a>
+                                          <p aria-hidden="true" className="mt-1">
+                                            Shop now
+                                          </p>
                                         </div>
                                       ))}
                                     </div>
