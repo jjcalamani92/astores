@@ -23,14 +23,14 @@ const categories:Category[] = await fetch(
 <Layout title={page.data.name} description={page.data.description} ogImage={page.data.thumbnailUrl}>
 	<main>
 		<CategoryPreviewsP0 page={page} categories={categories} />
-		{
+		<!-- {
 			site.data.type === 'portfolio' &&
 			<CategoryPreviewsP0 page={page} categories={categories} />
 		}
 		{
 			site.data.type === 'wear' &&
 			<CategoryPreviewsW0 page={page} categories={categories} />
-		}
+		} -->
 
 	</main>
 </Layout>
