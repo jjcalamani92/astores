@@ -19,8 +19,22 @@ import { useStore } from '@nanostores/react'
 import { isCartOpen, isMenuOpen } from '@stores/ui'
 import { useTheme } from 'next-themes'
 import type { Site } from '@interfaces/site'
+import type { Navigation } from '@interfaces/paths'
 // import { marked } from 'marked';
-
+const featured = [
+  {
+    name: 'New Arrivals',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
+    imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
+  },
+  {
+    name: 'Basic Tees',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
+    imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
+  },
+]
 const navigation = {
   categories: [
     {
@@ -149,13 +163,14 @@ function classNames(...classes:string[]) {
 }
 interface Props {
   site: Site
+  navigation: Navigation[]
 }
 
-export  function HeaderW0({site}: Props) {
+export  function HeaderW0(props: Props) {
 
   const $isCartOpen = useStore(isCartOpen);
   const $isMenuOpen = useStore(isMenuOpen);
-  const data = useTheme()
+  // const data = useTheme()
   // console.log('theme', data)
   // const logo = marked.parse(site.data.logo.content, {mangle: false, headerIds: false});
   // const [open, setOpen] = useState(false)
@@ -203,9 +218,9 @@ export  function HeaderW0({site}: Props) {
                 <Tab.Group as="div" className="mt-2">
                   <div className="border-b border-gray-200">
                     <Tab.List className="-mb-px flex space-x-8 px-4">
-                      {navigation.categories.map((category) => (
+                      {props.navigation.map((category, i) => (
                         <Tab
-                          key={category.name}
+                          key={i}
                           className={({ selected }) =>
                             classNames(
                               selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
@@ -213,16 +228,16 @@ export  function HeaderW0({site}: Props) {
                             )
                           }
                         >
-                          {category.name}
+                          {category.data.name}
                         </Tab>
                       ))}
                     </Tab.List>
                   </div>
                   <Tab.Panels as={Fragment}>
-                    {navigation.categories.map((category) => (
-                      <Tab.Panel key={category.name} className="space-y-10 px-4 pb-8 pt-10">
+                    {props.navigation.map((category, i) => (
+                      <Tab.Panel key={i} className="space-y-10 px-4 pb-8 pt-10">
                         <div className="grid grid-cols-2 gap-x-4">
-                          {category.featured.map((item) => (
+                          {featured.map((item) => (
                             <div key={item.name} className="group relative text-sm">
                               <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
                                 <img src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
@@ -237,20 +252,22 @@ export  function HeaderW0({site}: Props) {
                             </div>
                           ))}
                         </div>
-                        {category.sections.map((section) => (
-                          <div key={section.name}>
-                            <p id={`${category.id}-${section.id}-heading-mobile`} className="font-medium text-gray-900">
-                              {section.name}
+                        {category.categories.map((category0,i) => (
+                          <div key={i}>
+                            <p id={`${category.slug}-${category0.slug}-heading-mobile`} className="font-medium text-gray-900">
+                              {category0.data.name}
+
                             </p>
                             <ul
                               role="list"
-                              aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
+                              aria-labelledby={`${category.slug}-${category0.slug}-heading-mobile`}
                               className="mt-6 flex flex-col space-y-6"
                             >
-                              {section.items.map((item) => (
-                                <li key={item.name} className="flow-root">
-                                  <a href={item.href} className="-m-2 block p-2 text-gray-500">
-                                    {item.name}
+                              {category0.categories.map((category1,) => (
+                                <li key={category1.slug} className="flow-root">
+                                  <a href={`/${category.slug}/${category0.slug}/${category1.slug}`} className="-m-2 block p-2 text-gray-500">
+                                  {category1.data.name}
+
                                   </a>
                                 </li>
                               ))}
@@ -262,7 +279,7 @@ export  function HeaderW0({site}: Props) {
                   </Tab.Panels>
                 </Tab.Group>
 
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+                {/* <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
                       <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
@@ -270,7 +287,7 @@ export  function HeaderW0({site}: Props) {
                       </a>
                     </div>
                   ))}
-                </div>
+                </div> */}
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
@@ -323,13 +340,13 @@ export  function HeaderW0({site}: Props) {
               <div className="ml-4 flex lg:ml-0">
                 <a href="#">
                   {
-                    site?.data.logo?.type === 'html'
+                    props.site?.data.logo?.type === 'html'
                       ?
                       
                       <h1>Logo</h1>
 
                       :
-                      <img className="h-8 w-auto" src={site?.data.logo?.content} alt='logo description' />
+                      <img className="h-8 w-auto" src={props.site?.data.logo?.content} alt='logo description' />
                   }
                   {/* <span className="sr-only">Your Company</span>
                   <img
@@ -343,8 +360,8 @@ export  function HeaderW0({site}: Props) {
               {/* Flyout menus */}
               <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch ">
                 <div className="flex h-full space-x-8">
-                  {navigation.categories.map((category) => (
-                    <Popover key={category.name} className="flex">
+                  {props.navigation.map((category, i) => (
+                    <Popover key={i} className="flex">
                       {({ open }) => (
                         <>
                           <div className="relative flex">
@@ -356,7 +373,7 @@ export  function HeaderW0({site}: Props) {
                                 'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                               )}
                             >
-                              {category.name}
+                              {category.data.name}
                             </Popover.Button>
                           </div>
 
@@ -377,7 +394,7 @@ export  function HeaderW0({site}: Props) {
                                 <div className="mx-auto max-w-7xl px-8">
                                   <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
                                     <div className="col-start-2 grid grid-cols-2 gap-x-8">
-                                      {category.featured.map((item) => (
+                                      {featured.map((item) => (
                                         <div key={item.name} className="group relative text-base sm:text-sm">
                                           <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
                                             <img
@@ -397,20 +414,20 @@ export  function HeaderW0({site}: Props) {
                                       ))}
                                     </div>
                                     <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
-                                      {category.sections.map((section) => (
-                                        <div key={section.name}>
-                                          <p id={`${section.name}-heading`} className="font-medium text-gray-900">
-                                            {section.name}
+                                      {category.categories.map((category0, i) => (
+                                        <div key={i}>
+                                          <p id={`${category0.slug}-heading`} className="font-medium text-gray-900">
+                                            {category0.data.name}
                                           </p>
                                           <ul
                                             role="list"
-                                            aria-labelledby={`${section.name}-heading`}
+                                            aria-labelledby={`${category0.data.name}-heading`}
                                             className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
                                           >
-                                            {section.items.map((item) => (
-                                              <li key={item.name} className="flex">
-                                                <a href={item.href} className="hover:text-gray-800">
-                                                  {item.name}
+                                            {category0.categories.map((category1,i) => (
+                                              <li key={i} className="flex">
+                                                <a href={`/${category.slug}/${category0.slug}/${category1.slug}`} className="hover:text-gray-800">
+                                                {category1.data.name}
                                                 </a>
                                               </li>
                                             ))}
@@ -428,7 +445,7 @@ export  function HeaderW0({site}: Props) {
                     </Popover>
                   ))}
 
-                  {navigation.pages.map((page) => (
+                  {/* {navigation.pages.map((page) => (
                     <a
                       key={page.name}
                       href={page.href}
@@ -436,7 +453,7 @@ export  function HeaderW0({site}: Props) {
                     >
                       {page.name}
                     </a>
-                  ))}
+                  ))} */}
                 </div>
               </Popover.Group>
 

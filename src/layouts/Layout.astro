@@ -17,7 +17,11 @@ const { title, description, ogImage } = Astro.props;
 const site: Site = await fetch(
   `${url}/api/${v}/${type}/query/sites/${uid}`
 ).then((response) => response.json());
+const navigation = await fetch(
+`${url}/api/${v}/${type}/query/pages/page/navigation?siteId=${uid}`
+).then((response) => response.json());
 
+console.log('navigation', navigation)
 const canonicalURL = new URL(Astro.url.pathname, `https://${site.data.info.website}`);
 const socialImageURL = new URL(
 	ogImage ? ogImage : "astropaper-og.jpg",
@@ -53,7 +57,7 @@ const socialImageURL = new URL(
 	</head>
 	<body>
 		<ThemeProvider client:load attribute="class" defaultTheme={site.data.theme.light} themes={site.data.theme.themes}>
-			<HeaderW0  client:load site={site} />
+			<HeaderW0  client:load site={site} navigation={navigation}/>
 			<ShoppingCarts client:load />
 			<slot />
 		</ThemeProvider>

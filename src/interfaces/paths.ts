@@ -11,3 +11,10 @@ export interface Paths {
   category8?: string
   category9?: string
 }
+export interface Navigation {
+  data: {
+    name: string
+  }
+  slug: string
+  categories: Navigation[]
+}
