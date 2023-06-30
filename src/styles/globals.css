@@ -152,6 +152,47 @@
     @apply min-h-screen text-cris-base bg-cris-fill
     selection:bg-cris-accent selection:bg-opacity-70 selection:text-cris-inverted;
   }
+  .prose {
+    @apply prose-headings:!mb-3 prose-headings:!text-cris-base 
+    prose-h3:italic prose-p:!text-cris-base 
+    prose-a:!text-cris-base prose-a:!decoration-dashed prose-a:underline-offset-8
+    hover:prose-a:text-cris-accent prose-blockquote:!border-l-cris-accent
+    prose-blockquote:border-opacity-50 prose-blockquote:opacity-80
+    prose-figcaption:!text-cris-base prose-figcaption:opacity-70
+    prose-strong:!text-cris-base
+
+    
+    prose-code:rounded prose-code:bg-cris-card 
+    prose-code:bg-opacity-75 prose-code:p-1 prose-code:!text-cris-base 
+    prose-code:before:!content-[''] prose-code:after:!content-['']
+    prose-pre:!text-cris-base prose-ol:!text-cris-base 
+    prose-ul:overflow-x-clip prose-ul:!text-cris-base prose-li:marker:!text-cris-accent
+    prose-table:text-cris-base prose-th:border
+    prose-th:border-cris-line prose-td:border 
+    prose-td:border-cris-line prose-img:mx-auto 
+    prose-img:!mt-2 prose-img:border-2 
+    prose-img:border-cris-line prose-hr:!border-cris-line;
+  }
+  .prose a {
+    @apply hover:!text-cris-accent;
+  }
+  .prose thead th:first-child,
+  tbody td:first-child,
+  tfoot td:first-child {
+    padding-left: 0.5714286em;
+  }
+  .prose h2#table-of-contents {
+    @apply mb-2;
+  }
+  .prose details {
+    @apply inline-block cursor-pointer select-none text-cris-base;
+  }
+  .prose summary {
+    @apply focus-outline;
+  }
+  .prose h2#table-of-contents + p {
+    @apply hidden;
+  }
 }
 @layer components {
   .warning {
@@ -191,7 +232,7 @@
     @apply h-5 w-5 rounded border-gray-400 text-indigo-600 focus:ring-indigo-500 absolute  top-2 left-2 z-10 opacity-0 group-hover:opacity-100 transition ease-in-out delay-150;
   }
    /* .prose :is(:where(code):not(:where([class~="not-prose"] *))) {
-    @apply text-skin-base
+    @apply text-cris-base
   } */
   .custom-html-style code, .custom-html-style pre {
     overflow-x: hidden !important;

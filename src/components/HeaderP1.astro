@@ -7,7 +7,7 @@ interface Props {
   pages: Page[]
 }
 const { site, pages  } = Astro.props;
-
+console.log('first', site.data.logo.content)
 ---
 
 <header>
@@ -15,7 +15,17 @@ const { site, pages  } = Astro.props;
   <div class="nav-container">
     <div class="top-nav-wrap">
       <a href="/" class="logo">
-        Logo
+        {
+          site.data.logo.type === 'html' ?
+            <Fragment set:html={site.data.logo.content} />
+          :
+
+          <img
+              src={site.data.logo.content ||
+                "https://cat.americana.edu.co/baranoa/img/sin_logo.png"}
+              alt="Logo"
+            />
+        }
         <!-- {
           LOGO_IMAGE.enable ? (
             <img
