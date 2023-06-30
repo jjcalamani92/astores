@@ -3,14 +3,14 @@ import Layout from '../../../../layouts/Layout.astro';
 import { url, v, uid, type } from "../../../../utils/const";
 import { getPaths } from "../../../../utils/function";
 import type { Category } from '../../../../interfaces/category';
+import type { Product } from '../../../../interfaces/product';
 import CategoryPreviewsW0 from '../../../../components/CategoryPreviewsW0.astro';
-import { Product } from '../../../../interfaces/product';
 import ProductPreviewsW0 from '../../../../components/ProductPreviewsW0.astro';
 
 const params = Astro.params;
 
 const category:Category = await fetch(
-  `${url}/api/${v}/${type}/query/categories/1/category/${uid}/${getPaths(params)}`
+  `${url}/api/${v}/${type}/query/categories/1/category/${uid}/${getPaths(params as any)}`
 ).then((response) => response.json());
 const categories:Category[] = await fetch(
   `${url}/api/${v}/${type}/query/categories/2/category/parentId?id=${category._id!}`
@@ -20,7 +20,7 @@ const products:Product[] = await fetch(
 ).then((response) => response.json());
 // console.log('products', products)
 ---
-<Layout title={category.data.name}>
+<Layout title={category.data.name} description={category.data.description} ogImage={category.data.thumbnailUrl}>
 	<main>
 		{
 			category.data.type === 'category' &&

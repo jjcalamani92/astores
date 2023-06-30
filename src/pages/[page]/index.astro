@@ -15,7 +15,7 @@ const categories:Category[] = await fetch(
 ).then((response) => response.json());
 // console.log('categories', categories)
 ---
-<Layout title={page.data.name}>
+<Layout title={page.data.name} description={page.data.description} ogImage={page.data.thumbnailUrl}>
 	<main>
 		<CategoryPreviewsW0 page={page} categories={categories} />
 	</main>

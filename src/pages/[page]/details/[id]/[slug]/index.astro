@@ -14,7 +14,7 @@ const product = await fetch(
 ).then((response) => response.json());
 
 ---
-<Layout title={product.data.name}>
+<Layout title={product.data.name} description={product.data.description} ogImage={product.data.thumbnailUrl}>
 	<main>
 		<ProductOverviewsW0 product={product} client:load />
 	</main>

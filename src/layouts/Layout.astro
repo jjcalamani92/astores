@@ -8,14 +8,21 @@ import { type, uid, url, v } from '@utils/const';
 
 export interface Props {
 	title: string;
+	description?: string;
+	ogImage?: string;
 }
 
-const { title } = Astro.props;
+const { title, description, ogImage } = Astro.props;
 
 const site: Site = await fetch(
   `${url}/api/${v}/${type}/query/sites/${uid}`
 ).then((response) => response.json());
 
+const canonicalURL = new URL(Astro.url.pathname, `https://${site.data.info.website}`);
+const socialImageURL = new URL(
+	ogImage ? ogImage : "astropaper-og.jpg",
+	Astro.url.origin
+).href;
 // console.log('site', site)
 ---
 
@@ -26,8 +33,23 @@ const site: Site = await fetch(
 		<meta name="description" content="Astro description">
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="canonical" href={canonicalURL} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta property="og:description" content={description} />
+
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={socialImageURL} />
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={socialImageURL} />
 	</head>
 	<body>
 		<ThemeProvider client:load attribute="class" defaultTheme={site.data.theme.light} themes={site.data.theme.themes}>
