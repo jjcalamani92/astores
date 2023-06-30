@@ -1,10 +1,9 @@
 ---
-import { HeaderW0 } from '@components/react/HeaderW0';
 import { ShoppingCarts } from '@components/react/ShoppingCarts';
-import { ThemeProvider } from 'next-themes'
 import "@styles/globals.css";
 import type { Site } from '@interfaces/site';
 import { type, uid, url, v } from '@utils/const';
+import HeaderP1 from '@components/HeaderP1.astro';
 
 export interface Props {
 	title: string;
@@ -56,11 +55,13 @@ const socialImageURL = new URL(
 		<meta property="twitter:image" content={socialImageURL} />
 	</head>
 	<body>
-		<ThemeProvider client:load attribute="class" defaultTheme={site.data.theme.light} themes={site.data.theme.themes}>
-			<HeaderW0  client:load site={site} navigation={navigation}/>
+		
+			<HeaderP1 site={site} />
+			<!-- <HeaderW0  client:load site={site} navigation={navigation}/> -->
 			<ShoppingCarts client:load />
 			<slot />
-		</ThemeProvider>
+			
+		
 	</body>
 </html>
 <style is:global>

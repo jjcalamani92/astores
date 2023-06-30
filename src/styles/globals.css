@@ -149,12 +149,12 @@
     --divider-color: 189, 189, 189;
   }
   body {
-    @apply min-h-screen text-cris-base 
+    @apply min-h-screen text-cris-base bg-cris-fill
     selection:bg-cris-accent selection:bg-opacity-70 selection:text-cris-inverted;
   }
 }
 @layer components {
-  .warning  {
+  .warning {
     @apply bg-slate-100;
   }
   .info {
