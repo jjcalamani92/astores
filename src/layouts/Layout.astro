@@ -21,8 +21,10 @@ const site: Site = await fetch(
 const navigation = await fetch(
 `${url}/api/${v}/${type}/query/pages/page/navigation?siteId=${uid}`
 ).then((response) => response.json());
-
-console.log('navigation', navigation)
+const pages = await fetch(
+	`${url}/api/${v}/${type}/query/pages/page/parentId?id=${uid}`
+).then((response) => response.json());
+// console.log('navigation', navigation)
 const canonicalURL = new URL(Astro.url.pathname, `https://${site.data.info.website}`);
 const socialImageURL = new URL(
 	ogImage ? ogImage : "astropaper-og.jpg",
@@ -60,15 +62,13 @@ const socialImageURL = new URL(
 	</head>
 	<body>
 		
-			<!-- <HeaderP0 site={site} /> -->
 			{
 				site.data.type === 'wear' &&
 				<HeaderW0  client:load site={site} navigation={navigation}/>
 			}
 			{
 				site.data.type === 'portfolio' &&
-				// <HeaderW0  client:load site={site} navigation={navigation}/>
-				<HeaderP1 site={site} />
+				<HeaderP1 site={site} pages={pages} />
 			}
 			<ShoppingCarts client:load />
 			<slot />

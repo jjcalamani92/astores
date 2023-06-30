@@ -1,15 +1,12 @@
 ---
+import type { Page } from '@interfaces/page';
 import type { Site } from '@interfaces/site';
-const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
-];
+
 interface Props {
   site: Site
+  pages: Page[]
 }
-const { site  } = Astro.props;
+const { site, pages  } = Astro.props;
 
 ---
 
@@ -59,22 +56,16 @@ const { site  } = Astro.props;
           </svg>
         </button>
         <ul id="menu-items" class="display-none sm:flex">
-          <li>
-            <a href="/posts" class={""}>
-              Posts
-            </a>
+          {
+            pages.map(page =>
+            <li>
+              <a href={`/${page.slug}`} class={""}>
+                {page.data.name}
+              </a>
           </li>
-          <li>
-            <!-- <a href="/tags" class={activeNav === "tags" ? "active" : ""}> -->
-            <a href="/tags" class={""}>
-              Tags
-            </a>
-          </li>
-          <li>
-            <a href="/about" class={""}>
-              About
-            </a>
-          </li>
+            )
+          }
+          
           <!-- <li>
             <LinkButton
               href="/search"

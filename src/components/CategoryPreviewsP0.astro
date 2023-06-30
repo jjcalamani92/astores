@@ -1,0 +1,51 @@
+---
+import type { Category } from '@interfaces/category';
+import type { Page } from '@interfaces/page';
+const params = Astro.params;
+
+const category = Object.keys(params).filter(prop => prop.startsWith('category'));
+const ruta = `/${params.page}${category.map(prop => `/${params[prop]}`).join('')}`;
+
+
+interface Props {
+  page: Category | Page
+  categories: Category[]
+}
+const { page, categories } = Astro.props;
+
+---
+<section class=" ">
+  <div class="container px-6 py-32 mx-auto">
+    <div class="text-center">
+      <h1 class="text-2xl font-semibold capitalize lg:text-3xl">{page.data.name}</h1>
+
+      <p class="max-w-lg mx-auto mt-4 text-cris-secondary">
+        {page.data.description}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-2">
+      {categories?.map((category, i) => (
+
+        <div >
+          <img class="relative z-10 object-cover w-full rounded-md h-96" src={category.data.thumbnailUrl || 'https://thumbs.dreamstime.com/b/blog-information-website-concept-workplace-background-text-view-above-127465079.jpg'} alt="" />
+
+          <div class="relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-cris-fill rounded-md shadow dark:bg-gray-900">
+            <a href={`${ruta}/${category?.slug}`} class="font-semibold  hover:underline  md:text-xl">
+            {category.data.name}
+            </a>
+
+            <p class="mt-3 text-sm text-cris-secondary md:text-sm line-clamp-3">
+            {category.data.description}
+            </p>
+
+            
+          </div>
+        </div>
+      ))
+      }
+
+      
+    </div>
+  </div>
+</section>

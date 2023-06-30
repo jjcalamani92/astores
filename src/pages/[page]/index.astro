@@ -4,19 +4,32 @@ import { url, v, uid, type } from "../../utils/const";
 import type { Page } from '../../interfaces/page';
 import type { Category } from '../../interfaces/category';
 import CategoryPreviewsW0 from '../../components/CategoryPreviewsW0.astro';
+import CategoryPreviewsP0 from '@components/CategoryPreviewsP0.astro';
+import type { Site } from '@interfaces/site';
 
 const params = Astro.params;
 
+const site: Site = await fetch(
+	`${url}/api/${v}/${type}/query/sites/${uid}`
+).then((response) => response.json());
 const page:Page = await fetch(
   `${url}/api/${v}/${type}/query/pages/page/${uid}/${params.page}`
 ).then((response) => response.json());
 const categories:Category[] = await fetch(
   `${url}/api/${v}/${type}/query/categories/0/category/parentId?id=${page._id!}`
 ).then((response) => response.json());
-// console.log('categories', categories)
+
 ---
 <Layout title={page.data.name} description={page.data.description} ogImage={page.data.thumbnailUrl}>
 	<main>
-		<CategoryPreviewsW0 page={page} categories={categories} />
+		{
+			site.data.type === 'portfolio' &&
+			<CategoryPreviewsP0 page={page} categories={categories} />
+		}
+		{
+			site.data.type === 'wear' &&
+			<CategoryPreviewsW0 page={page} categories={categories} />
+		}
+
 	</main>
 </Layout>
