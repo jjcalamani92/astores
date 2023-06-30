@@ -1,0 +1,44 @@
+---
+import type { Category } from '@interfaces/category';
+import type { Page } from '@interfaces/page';
+const params = Astro.params;
+
+const category = Object.keys(params).filter(prop => prop.startsWith('category'));
+const ruta = `/${params.page}${category.map(prop => `/${params[prop]}`).join('')}`;
+
+
+interface Props {
+  page: Category | Page
+  categories: Category[]
+}
+const { page, categories } = Astro.props;
+
+---
+<div class="bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
+      <h2 class="text-2xl font-bold text-gray-900">{page.data.name}</h2>
+
+      <div class="mt-6 lg:grid lg:grid-cols-3 gap-6">
+        {categories.map((category, i) => (
+          <div class="group relative">
+            <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+              <img
+                src={category.data.thumbnailUrl}
+                alt={category.data.description}
+                class="h-full w-full object-cover object-center"
+              />
+            </div>
+            <h3 class="mt-6 text-sm text-gray-500">
+              <a href={`${ruta}/${category?.slug}`}>
+                <span class="absolute inset-0" />
+                {category.data.name}
+              </a>
+            </h3>
+            <p class="text-base font-semibold text-gray-900 line-clamp-3">{category.data.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

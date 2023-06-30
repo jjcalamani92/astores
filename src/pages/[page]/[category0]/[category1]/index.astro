@@ -1,0 +1,35 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { url, v, uid, type } from "../../../../utils/const";
+import { getPaths } from "../../../../utils/function";
+import type { Category } from '../../../../interfaces/category';
+import CategoryPreviewsW0 from '../../../../components/CategoryPreviewsW0.astro';
+import { Product } from '../../../../interfaces/product';
+import ProductPreviewsW0 from '../../../../components/ProductPreviewsW0.astro';
+
+const params = Astro.params;
+
+const category:Category = await fetch(
+  `${url}/api/${v}/${type}/query/categories/1/category/${uid}/${getPaths(params)}`
+).then((response) => response.json());
+const categories:Category[] = await fetch(
+  `${url}/api/${v}/${type}/query/categories/2/category/parentId?id=${category._id!}`
+).then((response) => response.json());
+const products:Product[] = await fetch(
+  `${url}/api/${v}/${type}/query/products/product/parentId?id=${category._id!}`
+).then((response) => response.json());
+// console.log('products', products)
+---
+<Layout title={category.data.name}>
+	<main>
+		{
+			category.data.type === 'category' &&
+			<CategoryPreviewsW0 page={category} categories={categories} />
+		}
+		{
+			category.data.type === 'product' &&
+			<ProductPreviewsW0 page={category} products={products} />
+
+		}
+	</main>
+</Layout>

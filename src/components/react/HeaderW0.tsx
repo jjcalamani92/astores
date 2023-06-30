@@ -156,7 +156,7 @@ export  function HeaderW0({site}: Props) {
   const $isCartOpen = useStore(isCartOpen);
   const $isMenuOpen = useStore(isMenuOpen);
   const data = useTheme()
-  console.log('theme', data)
+  // console.log('theme', data)
   // const logo = marked.parse(site.data.logo.content, {mangle: false, headerIds: false});
   // const [open, setOpen] = useState(false)
   // console.log('first', $isCartOpen)
@@ -302,7 +302,7 @@ export  function HeaderW0({site}: Props) {
         </Dialog>
       </Transition.Root>
 
-      <header className="relative bg-white">
+      <header className="relative bg-white ">
         <p className="flex h-10 items-center justify-center bg-cris-dark px-4 text-sm font-medium text-cris-inverted sm:px-6 lg:px-8">
           Get free delivery on orders over $100
         </p>
@@ -341,7 +341,7 @@ export  function HeaderW0({site}: Props) {
               </div>
 
               {/* Flyout menus */}
-              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
+              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch ">
                 <div className="flex h-full space-x-8">
                   {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
@@ -369,11 +369,11 @@ export  function HeaderW0({site}: Props) {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
-                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
+                            <Popover.Panel className=" absolute inset-x-0 top-full text-sm text-gray-500">
                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                               <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
-                              <div className="relative bg-white">
+                              <div className="relative bg-white z-10">
                                 <div className="mx-auto max-w-7xl px-8">
                                   <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
                                     <div className="col-start-2 grid grid-cols-2 gap-x-8">

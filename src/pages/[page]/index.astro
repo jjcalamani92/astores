@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url, v, uid, type } from "../../utils/const";
+import type { Page } from '../../interfaces/page';
+import type { Category } from '../../interfaces/category';
+import CategoryPreviewsW0 from '../../components/CategoryPreviewsW0.astro';
+
+const params = Astro.params;
+
+const page:Page = await fetch(
+  `${url}/api/${v}/${type}/query/pages/page/${uid}/${params.page}`
+).then((response) => response.json());
+const categories:Category[] = await fetch(
+  `${url}/api/${v}/${type}/query/categories/0/category/parentId?id=${page._id!}`
+).then((response) => response.json());
+// console.log('categories', categories)
+---
+<Layout title={page.data.name}>
+	<main>
+		<CategoryPreviewsW0 page={page} categories={categories} />
+	</main>
+</Layout>
