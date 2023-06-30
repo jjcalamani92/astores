@@ -4,6 +4,8 @@ import "@styles/globals.css";
 import type { Site } from '@interfaces/site';
 import { type, uid, url, v } from '@utils/const';
 import HeaderP1 from '@components/HeaderP1.astro';
+import { HeaderW0 } from '@components/react/HeaderW0';
+// import HeaderP0 from '@components/HeaderP0.astro';
 
 export interface Props {
 	title: string;
@@ -53,11 +55,21 @@ const socialImageURL = new URL(
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={socialImageURL} />
+    <!-- <script is:inline src="/toggle-theme.js"></script> -->
+		
 	</head>
 	<body>
 		
-			<HeaderP1 site={site} />
-			<!-- <HeaderW0  client:load site={site} navigation={navigation}/> -->
+			<!-- <HeaderP0 site={site} /> -->
+			{
+				site.data.type === 'wear' &&
+				<HeaderW0  client:load site={site} navigation={navigation}/>
+			}
+			{
+				site.data.type === 'portfolio' &&
+				// <HeaderW0  client:load site={site} navigation={navigation}/>
+				<HeaderP1 site={site} />
+			}
 			<ShoppingCarts client:load />
 			<slot />
 			
