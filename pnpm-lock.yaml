@@ -68,6 +68,9 @@ dependencies:
   tailwindcss:
     specifier: ^3.0.24
     version: 3.3.2
+  zod:
+    specifier: ^3.21.4
+    version: 3.21.4
 
 devDependencies:
   '@tailwindcss/aspect-ratio':

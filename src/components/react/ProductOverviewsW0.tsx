@@ -19,12 +19,14 @@
   }
   ```
 */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 import type { Product } from '@interfaces/product'
 import { Swiper0 } from './Swiper0'
 import ReactMarkdown from 'react-markdown'
+import { isCartOpen } from '@stores/ui'
+import { addCartItem, } from '@stores/cartStores'
 const product = {
   name: 'Basic Tee 6-Pack',
   price: '$192',
@@ -89,7 +91,28 @@ interface Props {
 export function ProductOverviewsW0(props: Props) {
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+  // const $cartItems = useStore(cartItems);
+  // console.log('$cartItemss', $cartItems)
+  
+  
+  
+  function addToCart(e: any) {
+    e.preventDefault();
+    isCartOpen.set(true);
+    
+    addCartItem({
+      _id: props.product._id,
+      name: props.product.data.name,
+      slug: props.product.slug,
+      price: 10,
+      quantity: 1,
+      thumbnailUrl: props.product.data.images[0],
+    });
+  }
 
+  // localStorage.setItem('addToCart', addToCart.toString());
+  // const addToCartString = localStorage.getItem('addToCart');
+  // console.log('addToCartString', addToCartString)
   return (
     <div className="bg-white">
       <div className="pt-6">
@@ -196,7 +219,7 @@ export function ProductOverviewsW0(props: Props) {
               </div>
             </div>
 
-            <form className="mt-10">
+            <form className="mt-10" onSubmit={addToCart}>
               {/* Colors */}
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Color</h3>

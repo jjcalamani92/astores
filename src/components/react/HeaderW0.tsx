@@ -19,6 +19,7 @@ import { useStore } from '@nanostores/react'
 import { isCartOpen, isMenuOpen } from '@stores/ui'
 import type { Site } from '@interfaces/site'
 import type { Navigation } from '@interfaces/paths'
+import { getTotalItems, shoppingCart } from '@stores/cartStores'
 const featured = [
   {
     name: 'New Arrivals',
@@ -47,6 +48,8 @@ export  function HeaderW0(props: Props) {
 
   const $isCartOpen = useStore(isCartOpen);
   const $isMenuOpen = useStore(isMenuOpen);
+  const cartItems = useStore(shoppingCart);
+
   // const data = useTheme()
   // console.log('theme', data)
   // const logo = marked.parse(site.data.logo.content, {mangle: false, headerIds: false});
@@ -373,7 +376,7 @@ export  function HeaderW0(props: Props) {
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{getTotalItems()}</span>
                     <span className="sr-only">items in cart, view bag</span>
                   </div>
                 </div>
