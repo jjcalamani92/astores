@@ -10,6 +10,8 @@ export type CartItem = {
   quantity: number
 }
 
+// export const locale = persistentAtom('locale', 'en')
+
 // export const cartItems = map<Record<string, CartItem>>({});
 export const shoppingCart = persistentAtom<CartItem[]>('cart', [], {
   encode: JSON.stringify,
