@@ -4,11 +4,11 @@ import { url, v, uid, type } from "../../../../utils/const";
 import { getPaths } from "../../../../utils/function";
 import type { Category } from "../../../../interfaces/category";
 import type { Product } from "../../../../interfaces/product";
-import CategoryPreviewsW0 from "../../../../components/CategoryPreviewsW0.astro";
-import ProductPreviewsW0 from "../../../../components/ProductPreviewsW0.astro";
+import ListCategoryW0 from "../../../../components/ListCategoryW0.astro";
+import ListProductW0 from "../../../../components/ListProductW0.astro";
 import type { Site } from "@interfaces/site";
-import CategoryPreviewsP0 from "@components/CategoryPreviewsP0.astro";
-import ArticlesPreviewsP0 from "@components/ArticlesPreviewsP0.astro";
+import ListCategoryP0 from "@components/ListCategoryP0.astro";
+import ListArticlesP0 from "@components/ListArticlesP0.astro";
 
 const params = Astro.params;
 const site: Site = await fetch(
@@ -42,10 +42,10 @@ const articles = await fetch(
 			site.data.type === "portfolio" && (
 				<>
 					{category.data.type === "category" && (
-						<CategoryPreviewsP0 page={category} categories={categories} />
+						<ListCategoryP0 page={category} categories={categories} />
 					)}
 					{category.data.type === "blog" && (
-						<ArticlesPreviewsP0 page={category} articles={articles} />
+						<ListArticlesP0 page={category} articles={articles} />
 					)}
 				</>
 			)
@@ -54,10 +54,10 @@ const articles = await fetch(
 			site.data.type === "wear" && (
 				<>
 					{category.data.type === "category" && (
-						<CategoryPreviewsW0 page={category} categories={categories} />
+						<ListCategoryW0 page={category} categories={categories} />
 					)}
 					{category.data.type === "product" && (
-						<ProductPreviewsW0 page={category} products={products} />
+						<ListProductW0 page={category} products={products} />
 					)}
 				</>
 			)

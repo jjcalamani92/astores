@@ -277,21 +277,26 @@ export  function HeaderW0(props: Props) {
                                     <div className="col-span-4 grid grid-cols-5 gap-x-8 gap-y-10 text-sm">
                                       {category.categories.map((category0, i) => (
                                         <div key={i}>
-                                          <p id={`${category0.slug}-heading`} className="font-medium text-gray-900">
+                                          <a href={`/${category.slug}/${category0.slug}`} id={`${category0.slug}-heading`} className="font-medium text-gray-900 cursor-pointer">
                                             {category0.data.name}
-                                          </p>
+                                          </a>
                                           <ul
                                             role="list"
                                             aria-labelledby={`${category0.data.name}-heading`}
                                             className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
                                           >
-                                            {category0.categories.map((category1,i) => (
+                                            {category0.categories.slice(0,4).map((category1,i) => (
                                               <li key={i} className="flex">
                                                 <a href={`/${category.slug}/${category0.slug}/${category1.slug}`} className="hover:text-gray-800">
                                                 {category1.data.name}
                                                 </a>
                                               </li>
                                             ))}
+                                              <li className="flex">
+                                                <a href={`/${category.slug}/${category0.slug}`} className=" font-semibold hover:text-gray-800">
+                                                ...View All
+                                                </a>
+                                              </li>
                                           </ul> 
                                         </div>
                                       ))}

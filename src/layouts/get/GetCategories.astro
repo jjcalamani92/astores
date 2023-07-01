@@ -1,7 +1,7 @@
 ---
 import { type, uid, url, v } from '../../utils/const';
 import type { Site } from '../../interfaces/site';
-import CategoryPreviewsP0 from '../../components/CategoryPreviewsP0.astro';
+import CategoryPreviewsP0 from '../../components/ListCategoryP0.astro';
 
 const site: Site = await fetch(
   `${url}/api/${v}/${type}/query/sites/${uid}`

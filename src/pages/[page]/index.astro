@@ -3,8 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import { url, v, uid, type } from "../../utils/const";
 import type { Page } from '../../interfaces/page';
 import type { Category } from '../../interfaces/category';
-import CategoryPreviewsW0 from '../../components/CategoryPreviewsW0.astro';
-import CategoryPreviewsP0 from '@components/CategoryPreviewsP0.astro';
+import ListCategoryW0 from '../../components/ListCategoryW0.astro';
+import ListCategoryP0 from '@components/ListCategoryP0.astro';
 import type { Site } from '@interfaces/site';
 
 const params = Astro.params;
@@ -26,11 +26,11 @@ const categories:Category[] = await fetch(
 		
 		{
 			site.data.type === 'portfolio' &&
-			<CategoryPreviewsP0 page={page} categories={categories} />
+			<ListCategoryP0 page={page} categories={categories} />
 		}
 		{
 			site.data.type === 'wear' &&
-			<CategoryPreviewsW0 page={page} categories={categories} />
+			<ListCategoryW0 page={page} categories={categories} />
 		}
 
 	</main>
