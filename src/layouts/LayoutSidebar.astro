@@ -1,5 +1,6 @@
 ---
 // import FooterSidebar from './FooterSidebar.astro';
+import { SlideOvers } from '@components/react/SlideOvers';
 import FooterSidebar from './FooterSidebar.astro';
 import LayoutCommon from './LayoutCommon.astro';
 import NavBarSidebar from './NavBarSidebar.astro';
@@ -23,4 +24,6 @@ import SideBar from './SideBar.astro';
 			<FooterSidebar />
 		</div>
 	</div>
+	<SlideOvers client:load />
+
 </LayoutCommon>

@@ -7,6 +7,7 @@ import HeaderP1 from '@components/HeaderP1.astro';
 import { HeaderW0 } from '@components/react/HeaderW0';
 import HeaderP0 from '@components/HeaderP0.astro';
 import Header from '@components/ui/Header.astro';
+import { SlideOvers } from '@components/react/SlideOvers';
 // import HeaderP0 from '@components/HeaderP0.astro';
 
 export interface Props {
@@ -75,6 +76,7 @@ const socialImageURL = new URL(
 				<HeaderP1 site={site} pages={pages} />
 			}
 			<ShoppingCarts client:load />
+			<SlideOvers client:load />
 			<slot />
 			
 		

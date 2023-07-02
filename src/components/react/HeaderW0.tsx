@@ -48,7 +48,7 @@ export  function HeaderW0(props: Props) {
 
   const $isCartOpen = useStore(isCartOpen);
   const $isMenuOpen = useStore(isMenuOpen);
-  const cartItems = useStore(shoppingCart);
+  // const cartItems = useStore(shoppingCart);
 
   // const data = useTheme()
   // console.log('theme', data)

@@ -2,19 +2,21 @@
 /* eslint max-lines: 'off' */
 
 // import { fetchData } from '../lib/data.js';
-import NavPagination from './NavPagination.astro';
+import { Button0 } from "@components/react/Button";
+import NavPagination from "./NavPagination.astro";
 
 // const products = await fetchData('products');
-const products = [{
-	name: "string",
-	category: "string",
-	technology: "string",
-	id: 3,
-	description: "string",
-	price: "string",
-	discount: "string",
-
-}]
+const products = [
+	{
+		name: "string",
+		category: "string",
+		technology: "string",
+		id: 3,
+		description: "string",
+		price: "string",
+		discount: "string",
+	},
+];
 ---
 
 <entities-crud type="products">
@@ -191,6 +193,8 @@ const products = [{
 						</svg>
 						Refresh
 					</button>
+					<button id="button1" class="alert">Click me!</button>
+					<Button0 client:load/>
 					<button
 						id="createProductButton"
 						class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
@@ -210,7 +214,7 @@ const products = [{
 								d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
 								clip-rule="evenodd"></path></svg
 						>
-						Add product
+						Add producta
 					</button>
 				</div>
 			</div>
@@ -240,13 +244,13 @@ const products = [{
 
 								{
 									[
-										'Product Name',
-										'Technology',
-										'Description',
-										'ID',
-										'Price',
-										'Discount',
-										'Actions',
+										"Product Name",
+										"Technology",
+										"Description",
+										"ID",
+										"Price",
+										"Discount",
+										"Actions",
 									].map((th) => (
 										<th
 											scope="col"
@@ -723,7 +727,7 @@ const products = [{
 						type="submit"
 						class="text-white w-full justify-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
 					>
-						Add product
+						Add producta
 					</button>
 					<button
 						type="button"
@@ -755,5 +759,9 @@ const products = [{
 </entities-crud>
 
 <script>
-	// import './CrudEntities.client.js';
+	function handleClick() {
+		alert("Button was clicked!!");
+	}
+	const button1 = document.getElementById("button1");
+	button1?.addEventListener("click", handleClick);
 </script>
