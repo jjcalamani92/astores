@@ -149,32 +149,34 @@
     --divider-color: 189, 189, 189;
   }
   body {
-    @apply min-h-screen text-cris-base bg-cris-fill
+    @apply min-h-screen text-cris-primary bg-cris-fill
     selection:bg-cris-accent selection:bg-opacity-70 selection:text-cris-inverted;
   }
   .prose {
-    @apply prose-headings:!mb-3 prose-headings:!text-cris-base 
-    prose-h3:italic prose-p:!text-cris-base 
-    prose-a:!text-cris-base prose-a:!decoration-dashed prose-a:underline-offset-8
-    hover:prose-a:text-cris-accent prose-blockquote:!border-l-cris-accent
+    @apply prose-headings:!mb-3 prose-headings:!text-cris-primary 
+    prose-h3:italic prose-p:!text-cris-secondary 
+    prose-a:!text-cris-primary prose-a:!decoration-dashed prose-a:underline-offset-8
+
+    /* hover:prose-a:text-cris-accent */
+     prose-blockquote:!border-l-cris-accent
     prose-blockquote:border-opacity-50 prose-blockquote:opacity-80
-    prose-figcaption:!text-cris-base prose-figcaption:opacity-70
-    prose-strong:!text-cris-base
+    prose-figcaption:!text-cris-primary prose-figcaption:opacity-70
+    prose-strong:!text-cris-primary
 
     
     prose-code:rounded prose-code:bg-cris-card 
-    prose-code:bg-opacity-75 prose-code:p-1 prose-code:!text-cris-base 
+    prose-code:bg-opacity-75 prose-code:p-1 prose-code:!text-cris-primary 
     prose-code:before:!content-[''] prose-code:after:!content-['']
-    prose-pre:!text-cris-base prose-ol:!text-cris-base 
-    prose-ul:overflow-x-clip prose-ul:!text-cris-base prose-li:marker:!text-cris-accent
-    prose-table:text-cris-base prose-th:border
+    prose-pre:!text-cris-primary prose-ol:!text-cris-primary 
+    prose-ul:overflow-x-clip prose-ul:!text-cris-primary prose-li:marker:!text-cris-accent
+    prose-table:text-cris-primary prose-th:border
     prose-th:border-cris-line prose-td:border 
     prose-td:border-cris-line prose-img:mx-auto 
     prose-img:!mt-2 prose-img:border-2 
     prose-img:border-cris-line prose-hr:!border-cris-line;
   }
   .prose a {
-    @apply hover:!text-cris-accent;
+    @apply hover:text-cris-accent;
   }
   .prose thead th:first-child,
   tbody td:first-child,
@@ -185,7 +187,7 @@
     @apply mb-2;
   }
   .prose details {
-    @apply inline-block cursor-pointer select-none text-cris-base;
+    @apply inline-block cursor-pointer select-none text-cris-primary;
   }
   .prose summary {
     @apply focus-outline;
@@ -252,6 +254,14 @@
     line-height: 24px !important;
 
   } 
+  .swiper-button-prev {
+    /* left: 30; */
+    @apply text-cris-accent hover:text-cris-base !important
+  }
+  .swiper-button-next {
+    /* left: 30; */
+    @apply text-cris-accent hover:text-cris-base !important
+  }
 }
 
 

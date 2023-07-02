@@ -1,65 +1,14 @@
 
-import { useEffect, useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
-import { RadioGroup } from '@headlessui/react'
 import type { Product } from '@interfaces/product'
 import { Swiper0 } from './Swiper0'
 import ReactMarkdown from 'react-markdown'
 import { isCartOpen } from '@stores/ui'
 import { addCartItem, } from '@stores/cartStores'
-import { type } from '@utils/const'
-const product = {
-  name: 'Basic Tee 6-Pack',
-  price: '$192',
-  href: '#',
-  breadcrumbs: [
-    { id: 1, name: 'Men', href: '#' },
-    { id: 2, name: 'Clothing', href: '#' },
-  ],
-  images: [
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
-      alt: 'Model wearing plain white basic tee.',
-    },
-  ],
-  colors: [
-    { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-    { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
-    { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
-  ],
-  sizes: [
-    { name: 'XXS', inStock: false },
-    { name: 'XS', inStock: true },
-    { name: 'S', inStock: true },
-    { name: 'M', inStock: true },
-    { name: 'L', inStock: true },
-    { name: 'XL', inStock: true },
-    { name: '2XL', inStock: true },
-    { name: '3XL', inStock: true },
-  ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
-  highlights: [
-    'Hand cut and sewn locally',
-    'Dyed with our proprietary colors',
-    'Pre-washed & pre-shrunk',
-    'Ultra-soft 100% cotton',
-  ],
-  details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
-}
+const breadcrumbs = [
+  { id: 1, name: 'Men', href: '#' },
+  { id: 2, name: 'Clothing', href: '#' },
+]
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
 function classNames(...classes:string[]) {
@@ -70,11 +19,6 @@ interface Props {
 }
 
 export function ProductOverviewsH0(props: Props) {
-  
-  // const $cartItems = useStore(cartItems);
-  // console.log('$cartItemss', $cartItems)
-  
-  
   
   function addToCart(e: any) {
     e.preventDefault();
@@ -90,15 +34,12 @@ export function ProductOverviewsH0(props: Props) {
     });
   }
 
-  // localStorage.setItem('addToCart', addToCart.toString());
-  // const addToCartString = localStorage.getItem('addToCart');
-  // console.log('addToCartString', addToCartString)
   return (
     <div className="bg-white">
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-            {product.breadcrumbs.map((breadcrumb) => (
+            {breadcrumbs.map((breadcrumb) => (
               <li key={breadcrumb.id}>
                 <div className="flex items-center">
                   <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-900">
@@ -118,8 +59,8 @@ export function ProductOverviewsH0(props: Props) {
               </li>
             ))}
             <li className="text-sm">
-              <a href={product.href} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
-                {product.name}
+              <a href={"#"} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
+                {props.product.data.name}
               </a>
             </li>
           </ol>
@@ -147,7 +88,7 @@ export function ProductOverviewsH0(props: Props) {
                   </div>
               
             
-            <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
+            <p className="text-3xl tracking-tight text-gray-900">{props.product.data.price}</p>
 
             {/* Reviews */}
             <div className="mt-6">
