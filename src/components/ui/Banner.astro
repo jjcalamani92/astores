@@ -1,0 +1,75 @@
+<section class="banner">
+
+  <div class="box">
+      <img src="https://images.asos-media.com/navigation/ww_sale_topshop_gbl_4WL_127564122?&$n_320w$" alt="">
+      <div class="content">
+          <span>special offer</span>
+          <h3>upto 50% off</h3>
+          <a href="#" class="btn">shop now</a>
+      </div>
+  </div>
+
+  <div class="box">
+      <img src="https://images.asos-media.com/navigation/ww_sale_asosbrands_gbl_4WL_119993904?&$n_320w$" alt="">
+      <div class="content">
+          <span>special offer</span>
+          <h3>upto 50% off</h3>
+          <a href="#" class="btn">shop now</a>
+      </div>
+  </div>
+
+  <div class="box">
+      <img src="https://images.asos-media.com/navigation/ww_sale_puma_gbl_4wl_1935561?&$n_320w$" alt="">
+      <div class="content">
+          <span>special offer</span>
+          <h3>upto 50% off</h3>
+          <a href="#" class="btn">shop now</a>
+      </div>
+  </div>
+
+</section>
+<style >
+  section {
+  padding: 2rem 9%;
+}
+  .banner {
+  @apply grid grid-cols-3 gap-3
+}
+.banner .box {
+  position: relative;
+  height: 30rem;
+  overflow: hidden;
+  border-radius: .5rem;
+}
+.banner .box:hover img {
+          transform: scale(1.1);
+}
+.banner .box img {
+  height: auto;
+  width: 100%;
+  /* -o-object-fit: cover; */
+     object-fit: cover;
+}
+.banner .box .content {
+  position: absolute;
+  top: 20%;
+  left: 2rem;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.banner .box .content span {
+  /* font-size: 1.5rem; */
+  color: #333;
+}
+
+.banner .box .content h3 {
+  /* font-size: 2rem; */
+  color: #333;
+  padding-top: 1rem;
+}
+
+.banner .box .content .btn {
+  padding: .6rem 2rem;
+  /* font-size: 1.5rem; */
+}
+</style>
