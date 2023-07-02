@@ -14,8 +14,8 @@ module.exports = {
       textColor: {
         cris: {
           inverted: withOpacity('--fill-color'),
-
           dark: withOpacity('--dark-primary-color'),
+          light: withOpacity('--light-primary-color'),
           primary: withOpacity('--primary-text'),
           secondary: withOpacity('--secondary-text'),
           accent: withOpacity('--accent-color'),

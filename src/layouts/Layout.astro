@@ -58,7 +58,9 @@ const socialImageURL = new URL(
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={socialImageURL} />
     <!-- <script is:inline src="/toggle-theme.js"></script> -->
-		
+		<!-- <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" /> -->
+		<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+		<!-- <script src="swiper.js"></script> -->
 	</head>
 	<body>
 		
@@ -76,17 +78,3 @@ const socialImageURL = new URL(
 		
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>

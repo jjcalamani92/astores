@@ -1,0 +1,155 @@
+---
+// src/pages/swiper.astro
+---
+<section class="home" id="home">
+
+  <div class="swiper home-slider">
+
+      <div class="swiper-wrapper">
+
+          <div class="swiper-slide box" style="background: url(https://d26lpennugtm8s.cloudfront.net/assets/blog_es/artificial-photography-119298.jpg);">
+              <div class="content">
+                  <h3>happy Halloween</h3>
+                  <p>special discount</p>
+                  <div class="button">
+                      <a href="#" class="btn">shop now</a>
+                  </div>
+              </div>
+          </div>
+
+          <div class="swiper-slide box" style="background: url(https://blog.kolau.com/wp-content/uploads/2017/05/3-showroom_mini.jpg);">
+              <div class="content">
+                  <h3>upto 30% off</h3>
+                  <p>on all costumes</p>
+                  <div class="button">
+                      <a href="#" class="btn">shop now</a>
+                  </div>
+              </div>
+          </div>
+
+          <div class="swiper-slide box" style="background: url(https://img.freepik.com/foto-gratis/tienda-ropa-tienda-ropa-perchas-tienda-boutique-moderna_1150-8886.jpg?w=2000);">
+              <div class="content">
+                  <h3>limited offer</h3>
+                  <p>don't miss it</p>
+                  <div class="button">
+                      <a href="#" class="btn">shop now</a>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+
+  </div>
+
+</section>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+/>
+<style >
+ .home{
+    padding:0;
+}
+
+.home .home-slider .box{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:2rem;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.home .home-slider .box .content{
+    text-align: center;
+}
+
+.home .home-slider .box .content h3{
+    font-size: 5rem;
+    /* color:#fff; */
+    transition-delay: .2s;
+  @apply text-cris-dark font-bold;
+
+}
+
+.home .home-slider .box .content p{
+    font-size: 3rem;
+    color:#fff;
+    transition-delay: .4s;
+    padding:1rem 0;
+  @apply text-cris-accent font-semibold;
+
+}
+
+.home .home-slider .box .content .button{
+    transition-delay: .6s;
+}
+
+.home .home-slider .box .content > *{
+    transform: translateY(2rem);
+    opacity: 0;
+}
+
+.home .home-slider .swiper-slide-active .content > *{
+    transform: translateY(0rem);
+    opacity: 1;
+}
+
+.home .home-slider .swiper-button-next{
+    right: 4rem;
+    color:#fff;
+    opacity: 0;
+}
+
+.home .home-slider .swiper-button-prev{
+  left: 4rem;
+  
+  /* color:#fff; */
+  opacity: 0;
+}
+
+.home .home-slider .swiper-button-next:hover,
+.home .home-slider .swiper-button-prev:hover{
+  @apply text-cris-light
+    /* color:var(--main-color); */
+}
+
+.home .home-slider:hover .swiper-button-next,
+.home .home-slider:hover .swiper-button-prev{
+    opacity: 1;
+  @apply text-cris-accent;
+
+}
+</style>
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script is:inline>
+  new Swiper(".swiper");
+  var swiper = new Swiper(".home-slider", {
+  spaceBetween: 20,
+  effect: "fade",
+  loop:true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  centeredSlides: true,
+  autoplay: {
+    delay: 9500,
+    disableOnInteraction: false,
+  },
+});
+</script>
+<script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script is:inline>
+  AOS.init({
+      delay:400,
+      duration:800
+  });
+</script>

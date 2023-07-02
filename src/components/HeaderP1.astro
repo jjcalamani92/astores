@@ -7,7 +7,7 @@ interface Props {
   pages: Page[]
 }
 const { site, pages  } = Astro.props;
-console.log('first', site.data.logo.content)
+// console.log('first', site.data.logo.content)
 ---
 
 <header>
@@ -21,6 +21,7 @@ console.log('first', site.data.logo.content)
           :
 
           <img
+              class="w-[5rem] h-auto"
               src={site.data.logo.content ||
                 "https://cat.americana.edu.co/baranoa/img/sin_logo.png"}
               alt="Logo"
