@@ -1,0 +1,140 @@
+---
+import type { Page } from '@interfaces/page';
+import type { Site } from '@interfaces/site';
+interface Props {
+  site: Site
+  pages: Page[]
+}
+const { site, pages  } = Astro.props;
+---
+<header class="header">
+  <a href="home.html" class="logo"> <img class="h-10 p-1" src={site.data.logo.content} alt=""></a>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="home.html">home</a></li>
+      <li><a href="products.html">products</a></li>
+      <li>
+        <a href="#">pages +</a>
+        <ul>
+          <li><a href="about.html">about</a></li>
+          <li><a href="blogs.html">blogs</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">contact</a></li>
+      <li>
+        <a href="#">account +</a>
+        <ul>
+          <li><a href="login.html">login</a></li>
+          <li><a href="register.html">register</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="icons">
+    <div id="menu-btn" class="fas fa-bars"></div>
+    <div id="search-btn" class="fas fa-search"></div>
+    <a href="cart.html" class="fas fa-shopping-cart"></a>
+  </div>
+
+  <style>
+    .header {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: #fff;
+      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding: 0 9%;
+    }
+    .header .logo {
+  font-size: 2.5rem;
+  color: #333;
+  font-weight: bolder;
+  margin-right: auto;
+}
+.header .navbar ul {
+  list-style: none;
+}
+.header .navbar ul li {
+  position: relative;
+  float: left;
+}
+.header .navbar ul li:hover ul {
+  display: block;
+}
+.header .navbar ul li a {
+  /* font-size: 1.7rem; */
+  color: #666;
+  padding: 1rem;
+  display: block;
+}
+.header .navbar ul li a:hover {
+  background: #eee;
+}
+.header .navbar ul li ul {
+  position: absolute;
+  left: 0;
+  width: auto;
+  background: #fff;
+  display: none;
+}
+.header .navbar ul li ul li {
+  width: 100%;
+  
+}
+.header .icons div,
+.header .icons a {
+  font-size: 2.5rem;
+  color: #333;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+.header .icons div:hover,
+.header .icons a:hover {
+  color: #e84393;
+}
+@media (max-width: 768px) {
+  #menu-btn {
+    display: inline-block;
+  }
+  .header {
+    padding: 2rem;
+  }
+  .header .navbar {
+    position: absolute;
+    top: 99%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  .header .navbar.active {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .header .navbar ul li {
+    width: 100%;
+  }
+  .header .navbar ul li ul {
+    position: relative;
+    width: 100%;
+  }
+  .header .navbar ul li ul li a {
+    padding-left: 4rem;
+  }
+}
+
+  </style>
+</header>

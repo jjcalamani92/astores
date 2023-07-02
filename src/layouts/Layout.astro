@@ -5,6 +5,8 @@ import type { Site } from '@interfaces/site';
 import { type, uid, url, v } from '@utils/const';
 import HeaderP1 from '@components/HeaderP1.astro';
 import { HeaderW0 } from '@components/react/HeaderW0';
+import HeaderP0 from '@components/HeaderP0.astro';
+import Header from '@components/ui/Header.astro';
 // import HeaderP0 from '@components/HeaderP0.astro';
 
 export interface Props {
@@ -63,7 +65,7 @@ const socialImageURL = new URL(
 		<!-- <script src="swiper.js"></script> -->
 	</head>
 	<body>
-		
+		<Header site={site} pages={pages}/>
 			{
 				site.data.type === 'wear' &&
 				<HeaderW0  client:load site={site} navigation={navigation}/>
