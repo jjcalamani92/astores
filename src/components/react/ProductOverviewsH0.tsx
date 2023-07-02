@@ -139,18 +139,13 @@ export function ProductOverviewsH0(props: Props) {
           </div>
 
           {/* Options */}
-          <div className="mt-4 lg:row-span-3 lg:mt-0">
+          <div className="mt-4 lg:row-span-3 lg:mt-0 space-y-3">
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{props.product.data.name}</h1>
-            <div>
-              <h3 className="sr-only">Description</h3>
-
-              <div className="space-y-6">
                 <div className="prose">
                   <ReactMarkdown children={props.product.data.description}  />
                   {/* {props.product.data.description} */}
                   </div>
-              </div>
-            </div>
+              
             
             <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
 
