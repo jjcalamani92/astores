@@ -27,6 +27,7 @@ import { Swiper0 } from './Swiper0'
 import ReactMarkdown from 'react-markdown'
 import { isCartOpen } from '@stores/ui'
 import { addCartItem, } from '@stores/cartStores'
+import { type } from '@utils/const'
 const product = {
   name: 'Basic Tee 6-Pack',
   price: '$192',
@@ -221,6 +222,8 @@ export function ProductOverviewsW0(props: Props) {
 
             <form className="mt-10" onSubmit={addToCart}>
               {/* Colors */}
+              {
+                type === 'wear' &&
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Color</h3>
 
@@ -255,8 +258,11 @@ export function ProductOverviewsW0(props: Props) {
                   </div>
                 </RadioGroup>
               </div>
+              }
 
               {/* Sizes */}
+              {
+                type === 'wear' &&
               <div className="mt-10">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-medium text-gray-900">Size</h3>
@@ -317,6 +323,7 @@ export function ProductOverviewsW0(props: Props) {
                   </div>
                 </RadioGroup>
               </div>
+              }
 
               <button
                 type="submit"

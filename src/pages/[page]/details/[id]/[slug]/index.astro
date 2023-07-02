@@ -1,10 +1,8 @@
 ---
 import Layout from '../../../../../layouts/Layout.astro';
 import { url, v, uid, type } from "../../../../../utils/const";
-import type { Page } from '../../../../../interfaces/page';
-import type { Category } from '../../../../../interfaces/category';
-import CategoryPreviewsW0 from '../../../../../components/CategoryPreviewsW0.astro';
 import {ProductOverviewsW0} from '../../../../../components/react/ProductOverviewsW0';
+import { ProductOverviewsH0 } from '@components/react/ProductOverviewsH0';
 
 const params = Astro.params;
 
@@ -16,6 +14,7 @@ const product = await fetch(
 ---
 <Layout title={product.data.name} description={product.data.description} ogImage={product.data.thumbnailUrl}>
 	<main>
-		<ProductOverviewsW0 product={product} client:load />
+		<!-- <ProductOverviewsW0 product={product} client:load /> -->
+		<ProductOverviewsH0 product={product} client:load />
 	</main>
 </Layout>

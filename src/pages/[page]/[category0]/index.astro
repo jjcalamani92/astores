@@ -43,7 +43,7 @@ const articles = await fetch(
 			</>
 		}
 		{
-			site.data.type === 'wear' &&
+			site.data.type === 'wear' || 'hardwarestore' &&
 			<>
 				<ListCategoryW0 page={category} categories={categories} />
 			</>

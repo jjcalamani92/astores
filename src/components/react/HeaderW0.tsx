@@ -1,23 +1,9 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useStore } from '@nanostores/react'
 import { isCartOpen, isMenuOpen } from '@stores/ui'
-import type { Site } from '@interfaces/site'
+import type { Site } from '../../interfaces/site'
 import type { Navigation } from '@interfaces/paths'
 import { getTotalItems, shoppingCart } from '@stores/cartStores'
 const featured = [
@@ -25,13 +11,7 @@ const featured = [
     name: 'New Arrivals',
     href: '#',
     imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
-    imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
-  },
-  {
-    name: 'Basic Tees',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
-    imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
+    imageAlt: 'Models  sitting back to back, wearing Basic Tee in black and bone.',
   },
 ]
 

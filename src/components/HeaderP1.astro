@@ -197,66 +197,6 @@ const { site, pages  } = Astro.props;
 </style>
 
 <script>
-  
-// class AstroTheme extends HTMLElement {
-//   constructor() {
-//     super();
-
-//     const light = this.dataset.light;
-//     const dark = this.dataset.dark;
-
-//     const updateTheme = (theme:string) => {
-//       if (theme === light) {
-//         document.documentElement.classList.remove(dark!);
-//         document.getElementById("sun-svg")?.classList.add("hidden");
-//         document.getElementById("moon-svg")?.classList.remove("hidden");
-//       } else {
-//         document.documentElement.classList.add(dark!);
-//         document.getElementById("sun-svg")?.classList.remove("hidden");
-//         document.getElementById("moon-svg")?.classList.add("hidden");
-//       }
-
-//       window.localStorage.setItem('theme', theme);
-//     };
-
-//     const detectSystemTheme = () => {
-//       const isDarkMode = window.matchMedia && window.matchMedia(`(prefers-color-scheme: ${dark})`).matches;
-//       const theme = isDarkMode ? dark : light;
-//       updateTheme(theme!);
-//     };
-
-//     const handleToggleClick = () => {
-//       const element = document.documentElement;
-//       const currentTheme = element.classList.contains(dark!) ? dark : light;
-//       const newTheme = currentTheme === dark ? light : dark;
-//       updateTheme(newTheme!);
-//     };
-
-//     document.getElementById("theme-btn")?.addEventListener("click", handleToggleClick);
-
-//     const storedTheme = window.localStorage.getItem('theme');
-//     if (storedTheme) {
-//       updateTheme(storedTheme);
-//     } else {
-//       detectSystemTheme();
-//     }
-
-//     if (window.matchMedia) {
-//       const systemThemeQuery = window.matchMedia(`(prefers-color-scheme: ${dark})`);
-//       const handleSystemThemeChange = (e:any) => {
-//         const theme = e.matches ? dark : light;
-//         updateTheme(theme!);
-//       };
-
-//       systemThemeQuery.addEventListener("change", handleSystemThemeChange);
-//     }
-//   }
-// }
-
-// customElements.define("astro-theme", AstroTheme);
-
-
-// `(class: ${light})`
 class AstroTheme extends HTMLElement {
   constructor() {
     super();

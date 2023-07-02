@@ -1,13 +1,14 @@
 ---
 import { ButtonProductCart, ButtonProductView } from "./react/Button";
-import type { Category } from '@interfaces/category';
-import type { Page } from '@interfaces/page';
-import type { Product } from '@interfaces/product';
+import type { Category } from "@interfaces/category";
+import type { Page } from "@interfaces/page";
+import type { Product } from "@interfaces/product";
 interface Props {
-  page: Category | Page
-  products: Product[]
+  page: Category | Page;
+  products: Product[];
 }
 const { page, products } = Astro.props;
+// console.log("products", products);
 ---
 
 <div class="2xl:container 2xl:mx-auto">
@@ -57,45 +58,32 @@ const { page, products } = Astro.props;
       class="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-y-12 lg:gap-x-8 sm:gap-y-10 sm:gap-x-6 gap-y-6 lg:mt-12 mt-10"
     >
       {
-        products.map(product => (
-
-        <div class="relative group">
-      <div class="absolute top-0 left-0 py-2 px-4 bg-white bg-opacity-50">
-        <p class="text-xs leading-3 text-gray-800">New</p>
-      </div>
-      <div class="relative group">
-        <div
-          class="flex justify-center items-center opacity-0 bg-gradient-to-t from-gray-800 via-gray-800 to-opacity-30 group-hover:opacity-50 absolute top-0 left-0 h-full w-full"
-        >
-        </div>
-        <img
-          class="w-full"
-          src={product.data.thumbnailUrl}
-          alt="A girl Posing Image"
-        />
-        <div
-          class="absolute bottom-0 p-8 w-full opacity-0 group-hover:opacity-100"
-        >
-          <ButtonProductCart product={product} client:load/>
-          <ButtonProductView product={product} client:load/>
-        </div>
-      </div>
-      <p
-        class="font-normal dark:text-white  leading-5 text-gray-800 md:mt-6 mt-4"
-      >
-        {product.data.name}
-      </p>
-      <p
-        class="font-semibold dark:text-gray-300 text-xl leading-5 text-gray-800 mt-4"
-      >
-        $1550
-      </p>
-      <p
-        class="font-normal dark:text-gray-300 text-base leading-4 text-gray-600 mt-4"
-      >
-        2 colours
-      </p>
-    </div>
+        products.map((product) => (
+          <div class="relative group">
+            <div class="absolute top-0 left-0 py-2 px-4 bg-white bg-opacity-50">
+              <p class="text-xs leading-3 text-gray-800">New</p>
+            </div>
+            <div class="relative group">
+              <div class="flex justify-center items-center opacity-0 bg-gradient-to-t from-gray-800 via-gray-800 to-opacity-30 group-hover:opacity-50 absolute top-0 left-0 h-full w-full"></div>
+              <img
+                class="w-full"
+                src={product.data.thumbnailUrl}
+                alt="A girl Posing Image"
+              />
+              <div class="absolute bottom-0 p-8 w-full opacity-0 group-hover:opacity-100">
+                <ButtonProductCart product={product} client:load />
+              </div>
+            </div>
+            <a
+              href={`/product/details/${product?._id}/${product?.slug}`}
+              class="font-normal dark:text-white  leading-5 text-gray-800 md:mt-6 mt-4 cursor-pointer"
+            >
+              {product.data.name}
+            </a>
+            <p class="font-semibold dark:text-gray-300 text-xl leading-5 text-gray-800 mt-4">
+              Bs. {product.data.price}
+            </p>
+          </div>
         ))
       }
     </div>

@@ -10,6 +10,7 @@ import type { Site } from "@interfaces/site";
 import ListCategoryP0 from "@components/ListCategoryP0.astro";
 import ListArticlesP0 from "@components/ListArticlesP0.astro";
 import ListProductW1 from "@components/ListProductW1.astro";
+import ListProductH0 from "@components/ListProductH0.astro";
 
 const params = Astro.params;
 const site: Site = await fetch(
@@ -52,14 +53,15 @@ const articles = await fetch(
 			)
 		}
 		{
-			site.data.type === "wear" && (
+			site.data.type === "wear" || "hardwarestore" && (
 				<>
 					{category.data.type === "category" && (
 						<ListCategoryW0 page={category} categories={categories} />
 					)}
 					{category.data.type === "product" && (
 						// <ListProductW0 page={category} products={products} />
-						<ListProductW1 page={category} products={products} />
+						// <ListProductW1 page={category} products={products} />
+						<ListProductH0 page={category} products={products} />
 
 					)}
 				</>

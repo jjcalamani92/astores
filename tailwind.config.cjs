@@ -30,7 +30,7 @@ module.exports = {
           inverted: withOpacity('--fill-color'),
           dark: withOpacity('--dark-primary-color'),
           light: withOpacity('--light-primary-color'),
-          primary: withOpacity('--primary-text'),
+          primary: withOpacity('--primary-color'),
           secondary: withOpacity('--secondary-text'),
           accent: withOpacity('--accent-color'),
 

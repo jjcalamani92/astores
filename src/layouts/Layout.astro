@@ -35,10 +35,11 @@ const socialImageURL = new URL(
 	Astro.url.origin
 ).href;
 // console.log('site', site)
+
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class={site.data.theme.light}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description">
@@ -69,13 +70,15 @@ const socialImageURL = new URL(
 	<body>
 		<!-- <Header site={site} pages={pages}/> -->
 			{
-				site.data.type === 'wear' &&
+				site.data.type === 'wear' || 'hardwarestore' &&
 				<HeaderW0  client:load site={site} navigation={navigation}/>
 			}
 			{
 				site.data.type === 'portfolio' &&
 				<HeaderP1 site={site} pages={pages} />
 			}
+			<!-- <HeaderP1 site={site} pages={pages} /> -->
+			
 			<ShoppingCarts client:load />
 			<SlideOvers client:load />
 			<ProductQuickviews client:load />
@@ -84,3 +87,7 @@ const socialImageURL = new URL(
 		
 	</body>
 </html>
+<script>
+	// const theme = window.localStorage.getItem('theme')
+	// console.log('theme', theme)
+</script>
