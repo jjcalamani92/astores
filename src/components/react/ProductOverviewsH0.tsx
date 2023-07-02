@@ -145,7 +145,10 @@ export function ProductOverviewsH0(props: Props) {
               <h3 className="sr-only">Description</h3>
 
               <div className="space-y-6">
-                <p className="text-base text-gray-900">{props.product.data.description}</p>
+                <p className="text-base text-gray-900">
+                  <ReactMarkdown children={props.product.data.description}  />
+                  {/* {props.product.data.description} */}
+                  </p>
               </div>
             </div>
             
