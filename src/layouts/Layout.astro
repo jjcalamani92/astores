@@ -8,6 +8,7 @@ import { HeaderW0 } from '@components/react/HeaderW0';
 import HeaderP0 from '@components/HeaderP0.astro';
 import Header from '@components/ui/Header.astro';
 import { SlideOvers } from '@components/react/SlideOvers';
+import { ProductQuickviews } from '@components/react/ProductQuickviews';
 // import HeaderP0 from '@components/HeaderP0.astro';
 
 export interface Props {
@@ -77,6 +78,7 @@ const socialImageURL = new URL(
 			}
 			<ShoppingCarts client:load />
 			<SlideOvers client:load />
+			<ProductQuickviews client:load />
 			<slot />
 			
 		
