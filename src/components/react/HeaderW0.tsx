@@ -272,11 +272,14 @@ export  function HeaderW0(props: Props) {
                                                 </a>
                                               </li>
                                             ))}
+                                            {
+                                              category0.categories.length !== 0 &&
                                               <li className="flex">
                                                 <a href={`/${category.slug}/${category0.slug}`} className=" font-semibold hover:text-gray-800">
                                                 ...View All
                                                 </a>
                                               </li>
+                                            }
                                           </ul> 
                                         </div>
                                       ))}
