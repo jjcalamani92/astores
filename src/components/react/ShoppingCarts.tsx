@@ -19,9 +19,9 @@ export function ShoppingCarts({url}: Props) {
   // console.log('$cartItems', $cartItems)
   const urls = $cartItems.map(data => ( `https://${url}/product/details/${data._id}/${data.slug}`))
   const urls2 = $cartItems.map(data => ( {name: data.name, slug:`https://${url}/product/details/${data._id}/${data.slug}`}))
-  console.log('urls2', urls2)
+  // console.log('urls2', urls2)
 
-  var enlaces = urls2.map(function(data, index) {
+  const enlaces = urls2.map(function(data, index) {
     // var numeroProducto = index + 1
     return "- _Nombre:_ " + data.name.replace('&','')+"," + encodeURIComponent("\n")+ "- _url:_ " + data.slug + encodeURIComponent("\n");
   });

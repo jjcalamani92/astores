@@ -66,13 +66,14 @@ const socialImageURL = new URL(
 		<!-- <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" /> -->
 		<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
 		<!-- <script src="swiper.js"></script> -->
-		<link href="/prism.css" rel="stylesheet" />
+		<!-- <link href="/prism.css" rel="stylesheet" /> -->
+		<link href="/prism-synthwave84.css" rel="stylesheet" />
 		<script is:inline src="/prism.js"></script>
 	</head>
 	<body>
 		<!-- <Header site={site} pages={pages}/> -->
 			{
-				['wear', 'hardwarestore'].includes(site.data.type) &&
+				['bakery','wear', 'hardwarestore'].includes(site.data.type) &&
 				<HeaderW0  client:load site={site} navigation={navigation}/>
 			}
 			{

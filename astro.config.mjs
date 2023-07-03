@@ -4,7 +4,6 @@ import vercel from "@astrojs/vercel/serverless";
 import tailwind from "@astrojs/tailwind";
 import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
-import customTheme from "./my-shiki-theme.json";
 // https://astro.build/config
 import rehypePrettyCode from "rehype-pretty-code";
 
@@ -30,6 +29,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 // };
 
 export default defineConfig({
+  
   integrations: [
     react(),
     tailwind({
@@ -38,14 +38,10 @@ export default defineConfig({
       },
     }),
     image(),
-    mdx(),
+    mdx({
+      extendMarkdownConfig: false,
+    }),
   ],
   output: "server",
   adapter: vercel(),
-  markdown: {
-    rehypePlugins:[],
-    remarkPlugins:[],
-    
-    syntaxHighlight: "prism",
-  },
 });
