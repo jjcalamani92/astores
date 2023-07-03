@@ -6,13 +6,13 @@ import { isCartOpen, isMenuOpen } from '@stores/ui'
 import type { Site } from '../../interfaces/site'
 import type { Navigation } from '@interfaces/paths'
 import { getTotalItems, shoppingCart } from '@stores/cartStores'
-const featured = [
-  {
-    name: 'New Arrivals',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
-    imageAlt: 'Models  sitting back to back, wearing Basic Tee in black and bone.',
-  },
+const featured: any[] = [
+  // {
+  //   name: 'New Arrivals',
+  //   href: '#',
+  //   imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
+  //   imageAlt: 'Models  sitting back to back, wearing Basic Tee in black and bone.',
+  // },
 ]
 
 
