@@ -4,6 +4,7 @@ import { marked } from 'marked';
 // import Post from "../../../../../components/Post.astro";
 import Layout from "../../../../../layouts/Layout.astro";
 import { url, v, uid, type } from "../../../../../utils/const";
+import ArticleContent from '@components/ArticleContent.astro';
 
 // export async function getStaticPaths() {
 //   const articles = await fetch(
@@ -24,21 +25,17 @@ const content = marked.parse(article.data.content, {mangle: false, headerIds: fa
 ---
 
 <Layout title={article.data.name} description={article.data.description} ogImage={article.data.thumbnailUrl}>
-  <!-- <Post article={article}/> -->
+  <!-- <ArticleContent article={article} /> -->
   
   <div class="max-w-2xl px-6 py-24 mx-auto space-y-10">
     <div class="w-full mx-auto space-y-8 text-center">
-      {/* <p class="text-xs font-semibold tracking-wider uppercase">#TailwindCSS</p> */}
+      
       <h1 class="text-4xl font-bold leading-tight md:text-5xl text-skin-accent">
         {article.data?.name}
       </h1>
       <div class="flex flex-col items-start justify-between w-full md:flex-row md:items-center dark:text-gray-400">
         <div class="flex items-center md:space-x-2">
-          {/* <img
-            src="https://source.unsplash.com/75x75/?portrait"
-            alt=""
-            class="w-4 h-4 border rounded-full dark:bg-gray-500 dark:border-gray-700"
-          /> */}
+          
           <p class="text-sm"> July 19th, 2021</p>
         </div>
         <p class="flex-shrink-0 mt-3 text-sm md:mt-0">
@@ -48,10 +45,8 @@ const content = marked.parse(article.data.content, {mangle: false, headerIds: fa
   
     </div>
   
-    <div class="prose max-w-none prose-pre:bg-transparent prose-pre:p-0">
-      {/* <MDXRemote  source={post.data.content} /> */}
-      <!-- <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]} children={post.data.content} /> -->
-      {/* <MarkdownPreview markdown={post.data.content || ""} /> */}
+    <div class="prose max-w-none">
+      
       <article set:html={content} />
     </div>
     <div class="pt-12 border-t dark:border-gray-700">
@@ -152,3 +147,19 @@ const content = marked.parse(article.data.content, {mangle: false, headerIds: fa
     </div>
   </div>
 </Layout>
+<link href="/prism.css" rel="stylesheet" />
+<script is:inline src="/prism.js"></script>
+
+<style is:global>
+  div[data-rehype-pretty-code-fragment] { background-color: #111;}
+  pre > code {
+    display: grid;
+    background-color: rgba(200, 200, 255, .09);
+  }
+  .highlighted {
+    background-color: rgba(200,200,255,.1);
+    border-left-color: #60a5fa;
+    border-left-width: 3px;
+    border-left-style: solid;
+  }
+</style>

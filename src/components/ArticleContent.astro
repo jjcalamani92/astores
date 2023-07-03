@@ -1,0 +1,70 @@
+---
+import type { Article } from '@interfaces/article';
+import { marked } from 'marked';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import { Content } from './react/Content';
+interface Props {
+  article: Article
+}
+
+const { article } = Astro.props;
+const content = marked.parse(article.data.content, {mangle: false, headerIds: false});
+// console.log('article', article)
+---
+<!-- {
+  coverImage ? (
+    <div class="mx-auto w-full max-w-screen-lg md:-mb-10 lg:-mb-12 xl:-mb-16">
+      <img
+        src={coverImage.src}
+        width={coverImage.width}
+        height={coverImage.height}
+        loading="lazy"
+        decoding="async"
+        alt=""
+        class="w-full"
+      />
+    </div>
+  ) : (
+    <div
+      class:list={[
+        "w-full h-64 -mb-56 md:h-64 md:-mb-52 lg:h-96 lg:-mb-80 noise-underlay",
+        placeholderGradient,
+      ]}
+    />
+  )
+} -->
+
+<div class="grid-container relative mx-auto max-w-screen-lg md:z-10">
+  <div
+    class="noise-container mx-auto w-fit max-w-full bg-astro-gray-700 py-5 sm:py-8 md:px-10 md:py-12 lg:p-12 lg:py-16 xl:p-16 xl:py-20"
+  >
+    <div class="noise"></div>
+    <header class="mx-auto w-full max-w-prose text-center">
+      <!-- <time class="code text-astro-gray-200" datetime={data.publishDate.toISOString()}>
+        {format(data.publishDate, "MMMM d, yyyy")}
+      </time> -->
+      <h1 class="heading-3 mb-4 mt-2 md:heading-2 sm:mb-5 sm:mt-3">{article.data.name}</h1>
+      <div class="code flex flex-wrap items-center justify-center gap-4 text-astro-gray-200">
+        <span>By</span>
+        <!-- {
+          authors.map((author) => {
+            return (
+              <div class="flex items-center gap-2">
+                <Avatar name={author.slug} lg />
+                <span>{author.data.name}</span>
+              </div>
+            )
+          })
+        } -->
+      </div>
+    </header>
+    <hr class="-mx-16 my-16 border-astro-gray-500" />
+    <!-- <article class="prose">
+      <Content />
+    </article> -->
+    <article class="prose" >
+      <Content content={article.data.content} client:load/>
+    </article>
+    <!-- <article set:html={content} class="prose"/> -->
+  </div>
+</div>

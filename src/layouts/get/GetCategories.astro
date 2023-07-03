@@ -6,11 +6,14 @@ import CategoryPreviewsP0 from '../../components/ListCategoryP0.astro';
 const site: Site = await fetch(
   `${url}/api/${v}/${type}/query/sites/${uid}`
 ).then((response) => response.json());
-
-
 ---
 {
   site.data.type === 'portfolio' && 
-  <h1>Hola</h1>
+  <h1>Portfolio</h1>
+  // <CategoryPreviewsP0 page={page} categories={categories} />
+}
+{
+  site.data.type === 'portfolio' && 
+  <h1>Portfolio</h1>
   // <CategoryPreviewsP0 page={page} categories={categories} />
 }

@@ -5,15 +5,22 @@ import { useStore } from '@nanostores/react';
 import { isCartOpen } from '@stores/ui';
 import { getTotalItems, removeFromCart, shoppingCart } from '@stores/cartStores';
 
-export  function ShoppingCarts() {
+interface Props {
+  url:  string
+}
+
+export function ShoppingCarts({url}: Props) {
   const $isCartOpen = useStore(isCartOpen);
   const $cartItems = useStore(shoppingCart);
-  
+
   function removeToCart(item: any) {
     removeFromCart(item);
   }
+  // console.log('$cartItems', $cartItems)
+  const urls = $cartItems.map(data => ( `https://${url}/product/detail/${data._id}/${data.slug}`))
+  console.log('urls', urls) 
   // const remove = useStore(removeFromCart);
-  
+
   // console.log('$cartItems2', $cartItems2)
   // console.log('$cartItems', $cartItems)
   return (
@@ -63,44 +70,44 @@ export  function ShoppingCarts() {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                          {$cartItems.map((product, i) => (
-                            <li key={i} className="flex py-6">
-                            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                              <img
-                                src={product.thumbnailUrl}
-                                alt={product.name}
-                                className="h-full w-full object-cover object-center"
-                              />
-                            </div>
-
-                            <div className="ml-4 flex flex-1 flex-col">
-                              <div>
-                                <div className="flex justify-between text-base font-medium text-gray-900">
-                                  <h3>
-                                    <a href={"#"}>{product.name}</a>
-                                  </h3>
-                                  <p className="ml-4">0</p>
+                            {$cartItems.map((product, i) => (
+                              <li key={i} className="flex py-6">
+                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <img
+                                    src={product.thumbnailUrl}
+                                    alt={product.name}
+                                    className="h-full w-full object-cover object-center"
+                                  />
                                 </div>
-                                <p className="mt-1 text-sm text-gray-500">color</p>
-                              </div>
-                              <div className="flex flex-1 items-end justify-between text-sm">
-                                <p className="text-gray-500">Qty {product.quantity}</p>
 
-                                <div className="flex">
-                                  <button
-                                    type="button"
-                                    onClick={() => removeToCart(product)}
-                                    className="font-medium text-indigo-600 hover:text-indigo-500"
-                                  >
-                                    Remove
-                                  </button>
+                                <div className="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div className="flex justify-between text-base font-medium text-gray-900">
+                                      <h3>
+                                        <a href={"#"}>{product.name}</a>
+                                      </h3>
+                                      <p className="ml-4">0</p>
+                                    </div>
+                                    <p className="mt-1 text-sm text-gray-500">color</p>
+                                  </div>
+                                  <div className="flex flex-1 items-end justify-between text-sm">
+                                    <p className="text-gray-500">Qty {product.quantity}</p>
+
+                                    <div className="flex">
+                                      <button
+                                        type="button"
+                                        onClick={() => removeToCart(product)}
+                                        className="font-medium text-cris-accent hover:text-cris-base"
+                                      >
+                                        Remove
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                          </li>
-                            
-                          ))}
-                            
+                              </li>
+
+                            ))}
+
                           </ul>
                         </div>
                       </div>
@@ -113,9 +120,12 @@ export  function ShoppingCarts() {
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
+                        <a aria-label="Chat on WhatsApp" href="https://wa.me/59163039181?text=%C2%A1Me%20interesan%20estos%20productos%20y%20quiero%20hacer%20un%20pedido%21%0D%0A%0D%0Ahttps%3A%2F%2Fpiccoletti.vercel.app%2Fproduct%2Fdetail%2F64a1f%E2%80%A6%2Fesmeril-angular-inalambrico-115mm-18v-lxt-li-ion%0Dhttps%3A%2F%2Fpiccoletti.vercel.app%2Fproduct%2Fdetail%2F64a1f%E2%80%A68e3ee6e37fbc%2Famoladora-angular-750w-tc-ag-115-750%0Dhttps%3A%2F%2Fpiccoletti.vercel.app%2Fproduct%2Fdetail%2F64a1f%E2%80%A67fbf%2Famoladora-angular-ga7040s-multicenter-com-bo%0Dhttps%3A%2F%2Fpiccoletti.vercel.app%2Fproduct%2Fdetail%2F649e5%E2%80%A6qui-de-tirantes-con-ribete-de-encaje-de-collusion%0Dhttps%3A%2F%2Fpiccoletti.vercel.app%2Fproduct%2Fdetail%2F649e5%E2%80%A6s-fruncido-en-la-parte-delantera-de-other-stories" target="_blank"> <img alt="Chat on WhatsApp"  src="WhatsAppButtonGreenLarge.png" />
+                        {/* https://wa.me/59163039181?text=I'm%20inquiring%20about%20the%20apartment%20listing */}
+                        </a >
                         <a
                           href="#"
-                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                          className="flex items-center justify-center rounded-md border border-transparent bg-cris-accent px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-cris-base"
                         >
                           Checkout
                         </a>
@@ -125,7 +135,7 @@ export  function ShoppingCarts() {
                           or
                           <button
                             type="button"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                            className="font-medium text-cris-accent hover:text-cris-base"
                             onClick={() => isCartOpen.set(false)}
                           >
                             Continue Shopping

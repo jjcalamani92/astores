@@ -53,15 +53,15 @@ const articles = await fetch(
 			)
 		}
 		{
-			site.data.type === "wear" || "hardwarestore" && (
+			['wear','hardwarestore'].includes(site.data.type) && (
 				<>
 					{category.data.type === "category" && (
 						<ListCategoryW0 page={category} categories={categories} />
 					)}
 					{category.data.type === "product" && (
 						// <ListProductW0 page={category} products={products} />
-						// <ListProductW1 page={category} products={products} />
-						<ListProductH0 page={category} products={products} />
+						<ListProductW1 page={category} products={products} />
+						// <ListProductH0 page={category} products={products} />
 
 					)}
 				</>

@@ -12,6 +12,10 @@ module.exports = {
 	theme: {
 		extend: {
       colors: {
+        cris: {
+          'dark': withOpacity('--dark-primary-color'),
+          'accent': withOpacity('--accent-color'),
+        },
 				primary: {
 					50: '#eff6ff',
 					100: '#dbeafe',
@@ -44,10 +48,11 @@ module.exports = {
           light: withOpacity('--light-primary-color'),
           fill: withOpacity('--fill-color'),
           accent: withOpacity('--accent-color'),
-          primary: withOpacity('--primary-color'),
+          primary: withOpacity('--primary-text'),
           inverted: withOpacity('--primary-text'),
           card: withOpacity('--card-color'),
           'card-muted': withOpacity('--card-muted-color'),
+          base: withOpacity('--primary-color'),
 
           
         },
@@ -97,7 +102,7 @@ module.exports = {
 		require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     require('flowbite/plugin'),
-		require('flowbite-typography'),
+		// require('flowbite-typography'),
 		require('tailwind-scrollbar')({ nocompatible: true }),
 	],
 }
