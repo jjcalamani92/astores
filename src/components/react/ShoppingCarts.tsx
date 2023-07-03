@@ -22,7 +22,7 @@ export function ShoppingCarts({url}: Props) {
   const mensaje = "¡Me interesan estos productos y quiero hacer un pedido!";
 
 // Concatenar los URLs al enlace de WhatsApp
-  const urlBase = "https://wa.me/59163039181?text=";
+  const urlBase = "https://wa.me/59169869305?text=";
   const link = urlBase + encodeURIComponent(mensaje) + encodeURIComponent("\n\n") + urls.join(encodeURIComponent("\n"));
 
 
@@ -127,14 +127,12 @@ export function ShoppingCarts({url}: Props) {
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
-                        <a aria-label="Chat on WhatsApp" href={link} target="_blank"> <img alt="Chat on WhatsApp"  src="WhatsAppButtonGreenLarge.png" />
-                        {/* https://wa.me/59163039181?text=I'm%20inquiring%20about%20the%20apartment%20listing */}
-                        </a >
+                        
                         <a
-                          href="#"
+                          href={link} target="_blank"
                           className="flex items-center justify-center rounded-md border border-transparent bg-cris-accent px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-cris-base"
                         >
-                          Checkout
+                          Realizar Pedido por WhatsApp
                         </a>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
