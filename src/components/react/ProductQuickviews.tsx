@@ -45,6 +45,7 @@ export function ProductQuickviews() {
   function addToCart(e:any) {
     e.preventDefault();
     isCartOpen.set(true);
+    isProductQuickviewsOpen.set(false);
     
     addCartItem({
       _id: article?._id!,
