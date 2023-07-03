@@ -18,12 +18,18 @@ export function ShoppingCarts({url}: Props) {
   }
   // console.log('$cartItems', $cartItems)
   const urls = $cartItems.map(data => ( `https://${url}/product/details/${data._id}/${data.slug}`))
-  console.log('urls', urls)
+  const urls2 = $cartItems.map(data => ( {name: data.name, slug:`https://${url}/product/details/${data._id}/${data.slug}`}))
+  console.log('urls2', urls2)
+
+  var enlaces = urls2.map(function(data, index) {
+    // var numeroProducto = index + 1
+    return "*Nombre:* " + data.name.replace('&','') + ", *url:* " + data.slug + encodeURIComponent("\n");
+  });
   const mensaje = "¡Me interesan estos productos y quiero hacer un pedido!";
 
 // Concatenar los URLs al enlace de WhatsApp
   const urlBase = "https://wa.me/59169869305?text=";
-  const link = urlBase + encodeURIComponent(mensaje) + encodeURIComponent("\n\n") + urls.join(encodeURIComponent("\n"));
+  const link = urlBase + encodeURIComponent(mensaje) + encodeURIComponent("\n\n") + enlaces.join(encodeURIComponent("\n"));
 
 
   // const remove = useStore(removeFromCart);
