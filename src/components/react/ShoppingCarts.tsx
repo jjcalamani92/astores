@@ -18,7 +18,14 @@ export function ShoppingCarts({url}: Props) {
   }
   // console.log('$cartItems', $cartItems)
   const urls = $cartItems.map(data => ( `https://${url}/product/detail/${data._id}/${data.slug}`))
-  console.log('urls', urls) 
+  console.log('urls', urls)
+  const mensaje = "¡Me interesan estos productos y quiero hacer un pedido!";
+
+// Concatenar los URLs al enlace de WhatsApp
+  const urlBase = "https://wa.me/59163039181?text=";
+  const link = urlBase + encodeURIComponent(mensaje) + encodeURIComponent("\n\n") + urls.join(encodeURIComponent("\n"));
+
+
   // const remove = useStore(removeFromCart);
 
   // console.log('$cartItems2', $cartItems2)
@@ -120,7 +127,7 @@ export function ShoppingCarts({url}: Props) {
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
-                        <a aria-label="Chat on WhatsApp" href="https://wa.me/59163039181?text=%C2%A1Me%20interesan%20estos%20productos%20y%20quiero%20hacer%20un%20pedido%21%0D%0A%0D%0Ahttps%3A%2F%2Fpiccoletti.vercel.app%2Fproduct%2Fdetail%2F64a1f%E2%80%A6%2Fesmeril-angular-inalambrico-115mm-18v-lxt-li-ion%0Dhttps%3A%2F%2Fpiccoletti.vercel.app%2Fproduct%2Fdetail%2F64a1f%E2%80%A68e3ee6e37fbc%2Famoladora-angular-750w-tc-ag-115-750%0Dhttps%3A%2F%2Fpiccoletti.vercel.app%2Fproduct%2Fdetail%2F64a1f%E2%80%A67fbf%2Famoladora-angular-ga7040s-multicenter-com-bo%0Dhttps%3A%2F%2Fpiccoletti.vercel.app%2Fproduct%2Fdetail%2F649e5%E2%80%A6qui-de-tirantes-con-ribete-de-encaje-de-collusion%0Dhttps%3A%2F%2Fpiccoletti.vercel.app%2Fproduct%2Fdetail%2F649e5%E2%80%A6s-fruncido-en-la-parte-delantera-de-other-stories" target="_blank"> <img alt="Chat on WhatsApp"  src="WhatsAppButtonGreenLarge.png" />
+                        <a aria-label="Chat on WhatsApp" href={link} target="_blank"> <img alt="Chat on WhatsApp"  src="WhatsAppButtonGreenLarge.png" />
                         {/* https://wa.me/59163039181?text=I'm%20inquiring%20about%20the%20apartment%20listing */}
                         </a >
                         <a
