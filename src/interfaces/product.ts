@@ -1,4 +1,4 @@
-import { Image, Seo, UpdateDate } from "./site";
+import type { Image, Seo, UpdateDate } from "./site";
 
 export interface Product {
   _id: string;
@@ -24,10 +24,9 @@ export interface DataProduct {
   featured: string
   specs: string
   tags: {
-    uid: string
-    text: string
+    name: string
     slug: string
-  }
+  }[]
   images: string[]
   updateDate: UpdateDate
 }

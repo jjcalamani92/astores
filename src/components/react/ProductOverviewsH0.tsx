@@ -19,7 +19,7 @@ interface Props {
 }
 
 export function ProductOverviewsH0(props: Props) {
-  
+  console.log('props', props)
   function addToCart(e: any) {
     e.preventDefault();
     isCartOpen.set(true);
@@ -39,11 +39,11 @@ export function ProductOverviewsH0(props: Props) {
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-            {breadcrumbs.map((breadcrumb) => (
-              <li key={breadcrumb.id}>
-                <div className="flex items-center">
-                  <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-900">
-                    {breadcrumb.name}
+            {props.product.data.tags.map((tag, i) => (
+              <li key={i}>
+                <div className="lg:flex items-center hidden">
+                  <a href={"#"} className="mr-2 text-sm font-medium text-gray-900">
+                    {tag.name}
                   </a>
                   <svg
                     width={16}
@@ -86,9 +86,7 @@ export function ProductOverviewsH0(props: Props) {
                   <ReactMarkdown children={props.product.data.description}  />
                   {/* {props.product.data.description} */}
                   </div>
-              
-            
-            <p className="text-3xl tracking-tight text-gray-900">{props.product.data.price}</p>
+            <p className="text-3xl tracking-tight text-gray-900"> Bs. {props.product.data.price}</p>
 
             {/* Reviews */}
             <div className="mt-6">
