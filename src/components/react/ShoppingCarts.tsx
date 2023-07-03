@@ -17,7 +17,7 @@ export function ShoppingCarts({url}: Props) {
     removeFromCart(item);
   }
   // console.log('$cartItems', $cartItems)
-  const urls = $cartItems.map(data => ( `https://${url}/product/detail/${data._id}/${data.slug}`))
+  const urls = $cartItems.map(data => ( `https://${url}/product/details/${data._id}/${data.slug}`))
   console.log('urls', urls)
   const mensaje = "¡Me interesan estos productos y quiero hacer un pedido!";
 
