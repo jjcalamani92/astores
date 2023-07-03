@@ -39,7 +39,7 @@ export function ButtonProductCart({title = "Add to bag", product}: PropsButtonPr
       _id: product._id,
       name: product.data.name,
       slug: product.slug,
-      price: 10,
+      price: product.data.price,
       quantity: 1,
       thumbnailUrl: product.data.images[0],
     });

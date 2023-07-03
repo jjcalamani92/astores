@@ -99,9 +99,9 @@ export function ShoppingCarts({url}: Props) {
                                       <h3>
                                         <a href={"#"}>{product.name}</a>
                                       </h3>
-                                      <p className="ml-4">0</p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">color</p>
+                                      <p className="mt-1 text-sm text-gray-500">Bs. {product.price}</p>
+                                    {/* <p className="mt-1 text-sm text-gray-500">color</p> */}
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <p className="text-gray-500">Qty {product.quantity}</p>
