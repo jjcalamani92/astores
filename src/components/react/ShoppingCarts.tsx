@@ -23,7 +23,7 @@ export function ShoppingCarts({url}: Props) {
 
   var enlaces = urls2.map(function(data, index) {
     // var numeroProducto = index + 1
-    return "*Nombre:* " + data.name.replace('&','') + ", *url:* " + data.slug + encodeURIComponent("\n");
+    return "- *Nombre:* " + data.name.replace('&','') + ", *url:* " + data.slug + encodeURIComponent("\n");
   });
   const mensaje = "¡Me interesan estos productos y quiero hacer un pedido!";
 
