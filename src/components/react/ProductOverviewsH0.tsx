@@ -28,7 +28,7 @@ export function ProductOverviewsH0(props: Props) {
       _id: props.product._id,
       name: props.product.data.name,
       slug: props.product.slug,
-      price: 10,
+      price: props.product.data.price,
       quantity: 1,
       thumbnailUrl: props.product.data.images[0],
     });
