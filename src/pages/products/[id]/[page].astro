@@ -16,16 +16,22 @@ const category: Category = await fetch(
 ).then((response) => response.json());
 
 
-
 export async function getStaticPaths({paginate}:any) {
+  function eliminarDuplicados(array:string[]) {
+    return [...new Set(array)];
+  }
+  
   const products: Product[] = await fetch(
 	`${url}/api/${v}/${type}/query/products/product/siteId?id=${uid}`
 ).then((response) => response.json());
-  
-  return products.map(({parentId}) => {
-    const filteredProducts = products.filter((post) => post.parentId === parentId);
+
+  const ids = products.map(data => (data.parentId))
+  const idss = eliminarDuplicados(ids)
+  // console.log('idss', idss)
+  return idss.map((id) => {
+    const filteredProducts = products.filter((post) => post.parentId === id);
     return paginate(filteredProducts, {
-      params: { id: parentId },
+      params: { id },
       pageSize: 8
     });
   });
