@@ -1,11 +1,11 @@
 // import { Article } from "../article/article.interface";
 // import { Product } from "../product/product.interface";
 // import { Food } from "./product/food.interface";
-import { Article } from "./article";
-import { Category } from "./category";
-import { Pet, Type } from "./pet";
-import { Product } from "./product";
-import { Image, Seo } from "./site";
+import type { Article } from "./article";
+import type { Category } from "./category";
+import type { Pet, Type } from "./pet";
+import type { Product } from "./product";
+import type { Image, Seo } from "./site";
 
 export interface Page {
   _id: string;

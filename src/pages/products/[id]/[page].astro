@@ -12,7 +12,7 @@ export const prerender = true;
 const params = Astro.params
 
 const category: Category = await fetch(
-	`${url}/api/${v}/${type}/query/categories/category/649e33fe19934955f146cdad`
+	`${url}/api/${v}/${type}/query/categories/category/${params.id}`
 ).then((response) => response.json());
 
 

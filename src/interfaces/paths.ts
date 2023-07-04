@@ -14,7 +14,9 @@ export interface Paths {
 export interface Navigation {
   data: {
     name: string
+    type: string
   }
+  _id: string
   slug: string
   categories: Navigation[]
 }

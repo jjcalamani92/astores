@@ -66,7 +66,7 @@ export function FlyoutMenuStores(props:Props) {
                                           >
                                             {category0.categories.slice(0,4).map((category1,i) => (
                                               <li key={i} className="flex">
-                                                <a href={`/${category.slug}/${category0.slug}/${category1.slug}`} className="hover:text-gray-800">
+                                                <a href={category1.data.type === 'category' ? `/${category.slug}/${category0.slug}/${category1.slug}` : `/products/${category1._id}/1`} className="hover:text-gray-800">
                                                 {category1.data.name}
                                                 </a>
                                               </li>

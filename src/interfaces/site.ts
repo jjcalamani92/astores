@@ -1,7 +1,6 @@
 // import { Page } from "./page.interface"
 
-import { Page } from "./page";
-import { Type } from "./pet";
+import type { Page } from "./page";
 
 export interface Site {
   _id: string;
