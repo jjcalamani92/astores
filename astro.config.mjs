@@ -29,7 +29,9 @@ import rehypePrettyCode from "rehype-pretty-code";
 // };
 
 export default defineConfig({
-  
+  // experimental: {
+  //   assets: true
+  //  },
   integrations: [
     react(),
     tailwind({

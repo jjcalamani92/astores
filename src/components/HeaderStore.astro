@@ -1,0 +1,90 @@
+---
+// export const prerender = true;
+
+import { getTotalItems, } from "@stores/cartStores";
+import { ButtonMenu } from "@components/react/Buttons/ButtonMenu";
+import { MenuMobileStores } from "@components/react/Menu/MenuMobileStores";
+import { FlyoutMenuStores } from "@components/react/Menu/FlyoutMenuStores";
+import type { Site } from "@interfaces/site";
+import type { Page } from "@interfaces/page";
+import type { Navigation } from "@interfaces/paths";
+import { Image, Picture } from '@astrojs/image/components';
+import { ButtonCart } from "./react/Buttons/ButtonCart";
+import { ButtonSearch } from "./react/Buttons/ButtonSearch";
+import { ShoppingCarts } from "./react/ShoppingCarts";
+import { CountCart } from "./react/Buttons/CountCart";
+export interface Props {
+	site: Site;
+	navigation: Navigation[];
+	pages?: Page[];
+}
+
+const { site, navigation, pages } = Astro.props;
+---
+<div class="bg-white">
+  {/* Mobile menu */}
+  <MenuMobileStores client:load site={site} navigation={navigation} />
+  
+
+  <header class="relative bg-white ">
+    <p class="flex h-10 items-center justify-center bg-cris-dark px-4 text-sm font-medium text-cris-inverted sm:px-6 lg:px-8">
+      Get free delivery on orders over $100
+    </p>
+
+    <nav aria-label="Top" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="border-b border-gray-200">
+        <div class="flex h-16 items-center">
+          <ButtonMenu client:load />
+          
+
+          {/* Logo */}
+          <div class="ml-4 flex lg:ml-0">
+            <a href="/">
+              <Image
+                src={site?.data.logo?.content}
+                alt="A very cool penguin!"
+                width={80}
+                height={10}
+                format="svg"
+              />
+              <!-- {
+                props.site?.data.logo?.type === 'html'
+                  ?
+                  
+                  <h1>Logo</h1>
+
+                  :
+                  <img class="h-8 w-auto" src={props.site?.data.logo?.content} alt='logo description' />
+              } -->
+              
+            </a>
+          </div>
+
+          {/* Flyout menus */}
+          <FlyoutMenuStores client:load navigation={navigation}/>
+
+          <div class="ml-auto flex items-center space-x-2">
+            
+            <ButtonSearch />
+
+            <div class="group flex items-center p-2">
+              <ButtonCart client:load />
+              <!-- <is-land  on:save-data class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{getTotalItems()}</is-land> -->
+              <CountCart client:only />
+            </div>
+
+            <ShoppingCarts url={site.data.info.website} client:load />
+
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+</div>
+
+<style>
+  
+</style>
+<script>
+
+</script>

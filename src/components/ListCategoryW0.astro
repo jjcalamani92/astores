@@ -1,6 +1,7 @@
 ---
 import type { Category } from '@interfaces/category';
 import type { Page } from '@interfaces/page';
+
 const params = Astro.params;
 
 const category = Object.keys(params).filter(prop => prop.startsWith('category'));
@@ -14,31 +15,41 @@ interface Props {
 const { page, categories } = Astro.props;
 
 ---
-<div class="bg-white">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
-      <h2 class="text-2xl font-bold text-gray-900">{page.data.name}</h2>
 
-      <div class="mt-6 lg:grid lg:grid-cols-3 gap-6">
-        {categories.map((category, i) => (
-          <div class="group relative">
-            <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
-              <img
-                src={category.data.thumbnailUrl}
-                alt={category.data.description}
-                class="h-full w-full object-cover object-center"
-              />
-            </div>
-            <h3 class="mt-6 text-sm text-gray-500">
-              <a href={`${ruta}/${category?.slug}`}>
-                <span class="absolute inset-0" />
-                {category.data.name}
-              </a>
-            </h3>
-            <p class="text-base font-semibold text-gray-900 line-clamp-3">{category.data.description}</p>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:max-w-none space-y-6">
+        <div class=  "bg-gradient-to-r from-cris-dark via-cris-accent to-cris-dark  text-center lg:py-10 md:py-8 py-6">
+            <p
+              class="w-10/12 mx-auto md:w-full font-semibold lg:text-4xl text-3xl lg:leading-9 md:leading-7 leading-9 text-center  text-cris-inverted "
+            >
+              {page.data.name}
+            </p>
           </div>
-        ))}
-      </div>
+          
+          <div class="grid grid-cols-4 gap-4">
+              {
+                  categories.map((category, i) => (
+                      <div
+                          class={`${
+                              i % 4 === 0
+                                  ? "col-span-2"
+                                  : "col-span-1"
+                          } relative group flex justify-center items-center h-[30rem] w-full`}
+                      >
+                          <img
+                              class="object-center object-cover h-full w-full z-0"
+                              src={category.data.thumbnailUrl || 'https://i.ibb.co/ThPFmzv/omid-armin-m-VSb6-PFk-VXw-unsplash-1-1.png'}
+                              alt="girl-image"
+                          />
+                          
+                          <a href={category.data.type === 'category' ? `${ruta}/${category?.slug}` : `/products/${category._id}/1` } class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white text-center">
+                              {category.data.name}
+                          </a>
+                          <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
+                      </div>
+                  ))
+              }
+          </div>
+        
     </div>
-  </div>
 </div>

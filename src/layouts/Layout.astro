@@ -1,4 +1,5 @@
 ---
+
 import { ShoppingCarts } from '@components/react/ShoppingCarts';
 import "@styles/globals.css";
 import type { Site } from '@interfaces/site';
@@ -9,6 +10,13 @@ import HeaderP0 from '@components/HeaderP0.astro';
 import Header from '@components/ui/Header.astro';
 import { SlideOvers } from '@components/react/SlideOvers';
 import { ProductQuickviews } from '@components/react/ProductQuickviews';
+import HeaderStore from '@components/HeaderStore.astro';
+// import Banners from '@components/Banners.astro';
+import { isBannerOpen } from '@stores/ui';
+import { Banners } from '@components/react/Banners';
+import Pagination from '@components/Pagination.astro';
+import { AccordionComponent } from '@components/react/RewindUI/AccordionComponent';
+import { CardComponent } from '@components/react/RewindUI/CardComponent';
 // import HeaderP0 from '@components/HeaderP0.astro';
 
 export interface Props {
@@ -62,29 +70,30 @@ const socialImageURL = new URL(
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={socialImageURL} />
-    <!-- <script is:inline src="/toggle-theme.js"></script> -->
-		<!-- <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" /> -->
 		<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-		<!-- <script src="swiper.js"></script> -->
-		<!-- <link href="/prism.css" rel="stylesheet" /> -->
 		<link href="/prism-synthwave84.css" rel="stylesheet" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 		<script is:inline src="/prism.js"></script>
 	</head>
 	<body>
-		<!-- <Header site={site} pages={pages}/> -->
-			{
+			<!-- <CardComponent />
+			<AccordionComponent client:load />
+			<Banners client:load /> -->
+			<HeaderStore site={site} navigation={navigation}/>
+			<!-- {
 				['bakery','wear', 'hardwarestore'].includes(site.data.type) &&
 				<HeaderW0  client:load site={site} navigation={navigation}/>
-			}
+			} -->
 			{
 				site.data.type === 'portfolio' &&
 				<HeaderP1 site={site} pages={pages} />
 			}
 			<!-- <HeaderP1 site={site} pages={pages} /> -->
 			
-			<ShoppingCarts url={site.data.info.website} client:load />
 			<SlideOvers client:load />
 			<ProductQuickviews client:load />
+			<!-- <Pagination /> -->
 			<slot />
 			
 		
@@ -92,5 +101,5 @@ const socialImageURL = new URL(
 </html>
 <script>
 	// const theme = window.localStorage.getItem('theme')
-	// console.log('theme', theme)
+	// console.log('theme', isBannerOpen.get())
 </script>

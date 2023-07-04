@@ -1,0 +1,30 @@
+---
+import { Product } from "../../interfaces/product";
+import { type, url, v } from "../../utils/const";
+export const prerender = true;
+export async function getStaticPaths({ paginate }) {
+//   const products2: Product[] = await fetch(
+// 	`${url}/api/${v}/${type}/query/products/product/parentId?id=649e33fe19934955f146cdad`
+// ).then((response) => response.json());
+  
+  const products: Product[] = await fetch(
+	`${url}/api/${v}/${type}/query/products/product/parentId?id=649e33fe19934955f146cdad`
+).then((response) => response.json());
+  
+  // Generate pages from our array of astronauts, with 2 to a page
+  return paginate(products, { pageSize: 2 });
+}
+// All paginated data is passed on the "page" prop
+const { page } = Astro.props;
+console.log('page', page)
+---
+
+<!--Display the current page number. Astro.params.page can also be used!-->
+<h1>Page {page.currentPage}</h1>
+<ul>
+  <!--List the array of astronaut info-->
+  {page.data.map((data) => <li>{data._id}</li>)}
+</ul>
+
+{page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+{page.url.next ? <a href={page.url.next}>Next</a> : null}
