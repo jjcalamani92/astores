@@ -56,7 +56,7 @@ export function FlyoutMenuStores(props:Props) {
                                     <div className="col-span-4 grid grid-cols-5 gap-x-8 gap-y-10 text-sm">
                                       {category.categories.map((category0, i) => (
                                         <div key={i}>
-                                          <a href={`/${category.slug}/${category0.slug}`} id={`${category0.slug}-heading`} className="font-medium text-gray-900 cursor-pointer">
+                                          <a href={category0.data.type === 'category' ? `/${category.slug}/${category0.slug}` : `/products/${category0._id}/1`} id={`${category0.slug}-heading`} className="font-medium text-gray-900 cursor-pointer">
                                             {category0.data.name}
                                           </a>
                                           <ul
