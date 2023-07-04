@@ -6,6 +6,7 @@ import { useStore } from '@nanostores/react'
 import { isCartOpen, isProductQuickviewsOpen } from '@stores/ui'
 import { $product } from '@stores/product'
 import { addCartItem } from '@stores/cartStores'
+import { Swiper1 } from './Swiper1'
 
 const product = {
   name: 'Basic Tee 6-Pack ',
@@ -94,8 +95,9 @@ export function ProductQuickviews() {
                   </button>
 
                   <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
-                    <div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
-                      <img src={article?.data.thumbnailUrl} alt={article?.data.description} className="object-cover object-center" />
+                    <div className="h-full overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5 ">
+                      {/* <Swiper1 images={article?.data.images!} /> */}
+                      <img src={article?.data.thumbnailUrl} alt={article?.data.description} className="object-cover object-center h-full" />
                     </div>
                     <div className="sm:col-span-8 lg:col-span-7">
                       <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{article?.data.name}</h2>
