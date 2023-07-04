@@ -2,7 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import { type, uid, url, v } from "../../../utils/const";
 import { getPaths } from "../../../utils/function";
-import ListProductW from "../../../components/ListProductW.astro";
+import ListProductW0 from "../../../components/ListProductW0.astro";
 import PaginationStore from "../../../components/PaginationStore.astro";
 import type { Product } from "@interfaces/product";
 import type { Category } from "@interfaces/category";
@@ -35,26 +35,15 @@ export async function getStaticPaths({paginate}:any) {
       pageSize: 8
     });
   });
-  // Generate pages from our array of astronauts, with 2 to a page
-  // return paginate(products, { params: {} pageSize: 2 });
 }
-// All paginated data is passed on the "page" prop
 const { page } = Astro.props;
-// console.log('page', page)
 ---
 <Layout
 	title={category.data.name}
 	description={category.data.description}
   ogImage={category.data.thumbnailUrl}
 >
-<ListProductW page={category} products={page.data}/>
+<ListProductW0 page={category} products={page.data}/>
 <PaginationStore page={page} />
-<!-- 
-<h1>Page {page.currentPage}</h1>
-<ul>
-  {page.data.map((data) => <li>{data._id}</li>)}
-</ul>
 
-{page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
-{page.url.next ? <a href={page.url.next}>Next</a> : null} -->
 </Layout>
