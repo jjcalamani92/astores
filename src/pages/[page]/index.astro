@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 		`${url}/api/${v}/${type}/query/pages/page/siteId?id=${uid}`
 	).then((response) => response.json());
 
-	const ids = pages.map((data) => data._id);
+	// console.log('pages', pages.filter((page) => page.data.type === 'product' ))
 
 	const categories0: Category[] = await fetch(
 		`${url}/api/${v}/${type}/query/categories/0/category/siteId?id=${uid}`
@@ -33,7 +33,7 @@ export async function getStaticPaths() {
 		);
 	}
 	
-	return pages.map((page) => ({
+	return pages.filter((page) => page.data.type !== 'product' ).map((page) => ({
 		params: { page: page.slug },
 		props: { page, categories: getCategories(page._id) },
 	}));

@@ -13,17 +13,13 @@ import ListCategoryP0 from "../../../../../components/ListCategoryP0.astro";
 import ListArticlesP0 from "../../../../../components/ListArticlesP0.astro";
 import ListProductW1 from "@components/ListProductW1.astro";
 
-const params = Astro.params;
 export async function getStaticPaths() {
-	function eliminarDuplicados(array: string[]) {
-		return [...new Set(array)];
-	}
+
 
 	const categories2: Category[] = await fetch(
 		`${url}/api/${v}/${type}/query/categories/2/category/siteId?id=${uid}`
 	).then((response) => response.json());
 
-	const ids = categories2.map((data) => data._id);
 
 	const categories3: Category[] = await fetch(
 		`${url}/api/${v}/${type}/query/categories/3/category/siteId?id=${uid}`
@@ -35,7 +31,7 @@ export async function getStaticPaths() {
 		);
 	}
 	
-	return categories2.map((category2) => ({
+	return categories2.filter((page) => page.data.type !== 'product' ).map((category2) => ({
 		params: {
 			page: category2.data.params.path[0],
 			category0: category2.data.params.path[1],

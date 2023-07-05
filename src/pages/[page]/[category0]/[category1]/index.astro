@@ -10,16 +10,15 @@ import type { Site } from "@interfaces/site";
 import ListCategoryP0 from "@components/ListCategoryP0.astro";
 
 export async function getStaticPaths() {
-	function eliminarDuplicados(array: string[]) {
-		return [...new Set(array)];
-	}
+	
 
 	const categories1: Category[] = await fetch(
 		`${url}/api/${v}/${type}/query/categories/1/category/siteId?id=${uid}`
 	).then((response) => response.json());
 
-	const ids = categories1.map((data) => data._id);
-	const idss = eliminarDuplicados(ids);
+	
+	// console.log('first', categories1.filter((page) => page.data.type !== 'product' ))
+
 
 	const categories2: Category[] = await fetch(
 		`${url}/api/${v}/${type}/query/categories/2/category/siteId?id=${uid}`
@@ -30,7 +29,7 @@ export async function getStaticPaths() {
 			(category) => category.parentId === id
 		);
 	}
-	return categories1.map((category1) => ({
+	return categories1.filter((page) => page.data.type !== 'product' ).map((category1) => ({
 		params: {
 			page: category1.data.params.path[0],
 			category0: category1.data.params.path[1],

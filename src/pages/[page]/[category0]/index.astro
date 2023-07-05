@@ -17,15 +17,13 @@ import type { Product } from "@interfaces/product";
 const params = Astro.params;
 
 export async function getStaticPaths() {
-	function eliminarDuplicados(array: string[]) {
-		return [...new Set(array)];
-	}
+	
 
 	const categories0: Category[] = await fetch(
 		`${url}/api/${v}/${type}/query/categories/0/category/siteId?id=${uid}`
 	).then((response) => response.json());
 
-	const ids = categories0.map((data) => data._id);
+	// console.log('categories', categories0.filter((page) => page.data.type !== 'product' ))
 	
 	// console.log('idssa', idss)
 	const categories1: Category[] = await fetch(
@@ -39,7 +37,7 @@ export async function getStaticPaths() {
 	}
 	
 
-		return categories0.map((category0) => ({
+		return categories0.filter((page) => page.data.type !== 'product' ).map((category0) => ({
 			params: {
 				page: category0.data.params.path[0],
 				category0: category0.data.params.path[1],
