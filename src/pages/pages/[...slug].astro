@@ -2,7 +2,7 @@
 import CategoriesLayout from "../../layouts/CategoriesLayout.astro";
 
 const params = Astro.params
-console.log('params', params)
+// console.log('params', params)
 export const prerender = true;
 
 export async function getStaticPaths() {
@@ -32,9 +32,9 @@ export async function getStaticPaths() {
 }
 
 const { title, text } = Astro.props;
-console.log('title', title)
-console.log('text', text)
+// console.log('title', title)
+// console.log('text', text)
 ---
-<CategoriesLayout title="Hola">
-  <h1>Holaa</h1>
+<CategoriesLayout title={title}>
+  <h1>{text}</h1>
 </CategoriesLayout>
