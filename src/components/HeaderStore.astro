@@ -40,21 +40,22 @@ const { site, navigation, pages } = Astro.props;
           {/* Logo */}
           <div class="ml-4 flex lg:ml-0">
             <a href="/">
-              <Image
+              <!-- <Image
                 src={site?.data.logo?.content}
                 alt="A very cool penguin!"
                 width={80}
                 height={10}
-                format="svg"
-              />
+                format="png"
+              /> -->
+              <img class="h-8 w-auto" src={site?.data.logo?.content} alt='logo description' />
               <!-- {
                 props.site?.data.logo?.type === 'html'
-                  ?
-                  
-                  <h1>Logo</h1>
-
-                  :
-                  <img class="h-8 w-auto" src={props.site?.data.logo?.content} alt='logo description' />
+                ?
+                
+                <h1>Logo</h1>
+                
+                :
+                <img class="h-8 w-auto" src={props.site?.data.logo?.content} alt='logo description' />
               } -->
               
             </a>
