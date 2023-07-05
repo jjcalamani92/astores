@@ -28,23 +28,25 @@ export async function getStaticPaths() {
   return resultado;
 }
 
-  const pages: Page[] = await fetch(
+  let pages: Page[] = await fetch(
 		`${url}/api/${v}/${type}/query/pages/page/siteId?id=${uid}`
 	).then((response) => response.json());
   
-  const categories0: Category[] = await fetch(
+  let categories0: Category[] = await fetch(
 		`${url}/api/${v}/${type}/query/categories/0/category/siteId?id=${uid}`
 	).then((response) => response.json());
 
-  const categories1: Category[] = await fetch(
+  let categories1: Category[] = await fetch(
 		`${url}/api/${v}/${type}/query/categories/1/category/siteId?id=${uid}`
 	).then((response) => response.json());
   
-
-  const paths = [...pages, ...categories0, ...categories1]
-  // console.log('paths', paths)
+  let categories2: Category[] = await fetch(
+		`${url}/api/${v}/${type}/query/categories/2/category/siteId?id=${uid}`
+	).then((response) => response.json());
   
-  return paths.map((page) => {
+
+  const paths = [...pages, ...categories0, ...categories1, ...categories2]
+  return paths.filter((page) => page.data.type !== 'product' ).map((page) => {
 
     return {
       params: { slug: concatenarElementos(page.data.params.path) },
