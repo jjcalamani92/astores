@@ -12,31 +12,33 @@ import ListArticlesP0 from "@components/ListArticlesP0.astro";
 import ListCategoryW0 from "@components/ListCategoryW0.astro";
 import ListProductF0 from "@components/ListProductF0.astro";
 
-
 export async function getStaticPaths() {
-  function eliminarDuplicados(array:string[]) {
-    return [...new Set(array)];
-  }
+	function eliminarDuplicados(array: string[]) {
+		return [...new Set(array)];
+	}
 
-	const pages:Page[] = await fetch(
-    `${url}/api/${v}/${type}/query/pages/page/siteId?id=${uid}`
-    ).then((response) => response.json());
-  
-		const ids = pages.map(data => (data._id))
-		const idss = eliminarDuplicados(ids)
+	const pages: Page[] = await fetch(
+		`${url}/api/${v}/${type}/query/pages/page/siteId?id=${uid}`
+	).then((response) => response.json());
 
-		const categories:Category[]= await fetch(
-    `${url}/api/${v}/${type}/query/categories/0/category/siteId?id=${uid}`
-    ).then((response) => response.json());
+	const ids = pages.map((data) => data._id);
+	const idss = eliminarDuplicados(ids);
 
-		return idss.map((id) => {
-			const filteredCategories = categories.filter((category) => category.parentId === id);
-			return pages.map((page) => ({ params: { page: page.slug }, props: {page, categories: filteredCategories}}));
-		})
+	const categories: Category[] = await fetch(
+		`${url}/api/${v}/${type}/query/categories/0/category/siteId?id=${uid}`
+	).then((response) => response.json());
 
+	return idss.map((id) => {
+		const filteredCategories = categories.filter(
+			(category) => category.parentId === id
+		);
+		return pages.map((page) => ({
+			params: { page: page.slug },
+			props: { page, categories: filteredCategories },
+		}));
+	});
 }
 const { page, categories } = Astro.props;
-
 
 // const site: Site = await fetch(
 // 	`${url}/api/${v}/${type}/query/sites/${uid}`
@@ -60,24 +62,15 @@ if (!page) return Astro.redirect("/404");
 >
 	<main>
 		{
-			type.includes('portfolio') && (
-				<Fragment>
-					{page.data.type === "category" && (
-						<ListCategoryP0 page={page} categories={categories} />
-					)}
-					
-				</Fragment>
+			type.includes("portfolio") && (
+				<ListCategoryP0 page={page} categories={categories} />
 			)
 		}
+		{type.includes("furniture") && <ListProductF0 />}
 		{
-			type.includes('furniture') && 
-			<ListProductF0 />
+			type.includes("wear") && (
+				<ListCategoryW0 page={page} categories={categories} />
+			)
 		}
-		{
-			type.includes('wear') && 
-			<ListCategoryW0 page={page} categories={categories} />
-		}
-
-		
 	</main>
 </Layout>

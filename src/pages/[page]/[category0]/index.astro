@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from "../../../layouts/Layout.astro";
 import { url, v, uid, type } from "../../../utils/const";
 import { getPaths } from "../../../utils/function";
@@ -14,24 +16,55 @@ import type { Product } from "@interfaces/product";
 
 const params = Astro.params;
 
-const site: Site = await fetch(
-	`${url}/api/${v}/${type}/query/sites/${uid}`
-).then((response) => response.json());
-const category: Category = await fetch(
-	`${url}/api/${v}/${type}/query/categories/0/category/${uid}/${getPaths(
-		params as any
-	)}`
-).then((response) => response.json());
+export async function getStaticPaths() {
+	function eliminarDuplicados(array: string[]) {
+		return [...new Set(array)];
+	}
+
+	const categories0: Category[] = await fetch(
+		`${url}/api/${v}/${type}/query/categories/0/category/siteId?id=${uid}`
+	).then((response) => response.json());
+
+	const ids = categories0.map((data) => data._id);
+	const idss = eliminarDuplicados(ids);
+
+	const categories1: Category[] = await fetch(
+		`${url}/api/${v}/${type}/query/categories/1/category/siteId?id=${uid}`
+	).then((response) => response.json());
+
+	return idss.map((id) => {
+		const filteredCategories = categories1.filter(
+			(category) => category.parentId === id
+		);
+		return categories0.map((category0) => ({
+			params: {
+				page: category0.data.params.path[0],
+				category0: category0.data.params.path[1],
+			},
+			props: { category: category0, categories: filteredCategories },
+		}));
+	});
+}
+const { category, categories } = Astro.props;
+
+// const site: Site = await fetch(
+// 	`${url}/api/${v}/${type}/query/sites/${uid}`
+// ).then((response) => response.json());
+// const category: Category = await fetch(
+// 	`${url}/api/${v}/${type}/query/categories/0/category/${uid}/${getPaths(
+// 		params as any
+// 	)}`
+// ).then((response) => response.json());
 if (!category) return Astro.redirect("/404");
-const categories: Category[] = await fetch(
-	`${url}/api/${v}/${type}/query/categories/1/category/parentId?id=${category._id!}`
-).then((response) => response.json());
-const articles = await fetch(
-	`${url}/api/${v}/${type}/query/articles/article/parentId?id=${category._id!}`
-).then((response) => response.json());
-const products: Product[] = await fetch(
-	`${url}/api/${v}/${type}/query/products/product/parentId?id=${category._id!}`
-).then((response) => response.json());
+// const categories: Category[] = await fetch(
+// 	`${url}/api/${v}/${type}/query/categories/1/category/parentId?id=${category._id!}`
+// ).then((response) => response.json());
+// const articles = await fetch(
+// 	`${url}/api/${v}/${type}/query/articles/article/parentId?id=${category._id!}`
+// ).then((response) => response.json());
+// const products: Product[] = await fetch(
+// 	`${url}/api/${v}/${type}/query/products/product/parentId?id=${category._id!}`
+// ).then((response) => response.json());
 // console.log('categories', categories)
 ---
 
@@ -42,30 +75,13 @@ const products: Product[] = await fetch(
 >
 	<main>
 		{
-			site.data.type === "portfolio" && (
-				<>
-					{category.data.type === "category" && (
-						<ListCategoryP0 page={category} categories={categories} />
-					)}
-					{category.data.type === "blog" && (
-						<ListArticlesP0 page={category} articles={articles} />
-					)}
-				</>
+			type.includes("portfolio") && (
+				<ListCategoryP0 page={category} categories={categories} />
 			)
 		}
 		{
-			["bakery", "wear", "hardwarestore"].includes(site.data.type) && (
-				<>
-					{category.data.type === "category" && (
-						<ListCategoryW0 page={category} categories={categories} />
-					)}
-					{category.data.type === "product" && (
-					// <ListProductW0 page={category} products={products} />
-					// <ListProductW1 page={category} products={products} />
-						<ListProductH0 page={category} products={products} />
-					)}
-				</>
-			)
+			type.includes('wear') && 
+			<ListCategoryW0 page={category} categories={categories} />
 		}
 	</main>
 </Layout>
