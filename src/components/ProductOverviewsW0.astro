@@ -1,17 +1,19 @@
 ---
+// export const prerender = false;
+
 import type { Product } from '@interfaces/product';
 import { Swiper0 } from './react/Swiper0';
  interface Props {
   product: Product
 }
-const {product} = Astro.props
+const { product } = Astro.props
 
 ---
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
       <div class="lg:w-3/5 w-full h-auto">
-        <Swiper0 images={product.data.images} client:load/>
+        <Swiper0 images={product.data.images} client:only/>
       </div>
 
       <!-- <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400"> -->
