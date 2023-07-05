@@ -3,16 +3,17 @@ import type { Category } from '@interfaces/category';
 import type { Page } from '@interfaces/page';
 
 const params = Astro.params;
+console.log('params', params)
 
-const category = Object.keys(params).filter(prop => prop.startsWith('category'));
-const ruta = `/${params.page}${category.map(prop => `/${params[prop]}`).join('')}`;
+// const category = Object.keys(params).filter(prop => prop.startsWith('category'));
+// const ruta = `/${params.page}${category.map(prop => `/${params[prop]}`).join('')}`;
 
 interface Props {
   page: Category | Page
   categories: Category[]
 }
 const { page, categories } = Astro.props;
-
+console.log('categories', categories)
 ---
 
 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -41,7 +42,7 @@ const { page, categories } = Astro.props;
                               alt="girl-image"
                           />
                           
-                          <a href={category.data.type === 'category' ? `${ruta}/${category?.slug}` : `/products/${category._id}/1` } class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white text-center">
+                          <a href={category.data.type === 'category' ? `${params.slug}/${category?.slug}` : `/products/${category._id}/1` } class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white text-center">
                               {category.data.name}
                           </a>
                           <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
