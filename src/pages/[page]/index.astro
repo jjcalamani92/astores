@@ -13,9 +13,6 @@ import ListCategoryW0 from "@components/ListCategoryW0.astro";
 import ListProductF0 from "@components/ListProductF0.astro";
 
 export async function getStaticPaths() {
-	function eliminarDuplicados(array: string[]) {
-		return [...new Set(array)];
-	}
 
 	const pages: Page[] = await fetch(
 		`${url}/api/${v}/${type}/query/pages/page/siteId?id=${uid}`
