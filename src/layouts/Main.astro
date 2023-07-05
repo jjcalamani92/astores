@@ -1,24 +1,24 @@
 ---
 import Breadcrumbs from "@components/Breadcrumbs.astro";
+import type { Paths } from "@interfaces/page";
 
 export interface Props {
   pageTitle: string;
   pageDesc?: string;
 }
 
-const { pageTitle, pageDesc } = Astro.props;
+const { pageTitle, pageDesc,  } = Astro.props;
 ---
 
-<Breadcrumbs />
-<main id="main-content">
+<main >
   <div
     class="bg-gradient-to-r from-cris-dark via-cris-accent to-cris-dark text-center lg:py-10 md:py-8 py-6"
   >
-    <p
+    <h1
       class="w-10/12 mx-auto md:w-full font-semibold lg:text-4xl text-3xl lg:leading-9 md:leading-7 leading-9 text-center text-cris-inverted"
     >
       {pageTitle}
-    </p>
+    </h1>
   </div>
   <!-- <p>{pageDesc}</p> -->
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -28,12 +28,5 @@ const { pageTitle, pageDesc } = Astro.props;
 </main>
 
 <style>
-  #main-content {
-  }
-  #main-content h1 {
-    @apply text-2xl font-semibold sm:text-3xl;
-  }
-  #main-content p {
-    @apply mt-2 mb-6 italic;
-  }
+
 </style>

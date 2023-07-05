@@ -4,7 +4,6 @@ import vercel from "@astrojs/vercel/serverless";
 import tailwind from "@astrojs/tailwind";
 import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
-// https://astro.build/config
 import rehypePrettyCode from "rehype-pretty-code";
 
 // const prettyCodeOptions = {
@@ -27,23 +26,20 @@ import rehypePrettyCode from "rehype-pretty-code";
 //   },
 //   tokensMap: {},
 // };
+import svelte from "@astrojs/svelte";
 
+// https://astro.build/config
 export default defineConfig({
   // experimental: {
   //   assets: true
   //  },
-  integrations: [
-    react(),
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
-    image(),
-    mdx({
-      extendMarkdownConfig: false,
-    }),
-  ],
+  integrations: [react(), tailwind({
+    config: {
+      applyBaseStyles: false
+    }
+  }), image(), mdx({
+    extendMarkdownConfig: false
+  }), svelte()],
   output: "server",
-  adapter: vercel(),
+  adapter: vercel()
 });

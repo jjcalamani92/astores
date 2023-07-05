@@ -16,6 +16,8 @@ import { isBannerOpen } from '@stores/ui';
 import { Banners } from '@components/react/Banners';
 import { AccordionComponent } from '@components/react/RewindUI/AccordionComponent';
 import { CardComponent } from '@components/react/RewindUI/CardComponent';
+import HeaderMarketing from '@components/astro/header/HeaderMarketing.astro';
+import HeaderMarketingS from '@components/svelte/HeaderMarketingS.svelte';
 // import HeaderP0 from '@components/HeaderP0.astro';
 
 export interface Props {
@@ -79,6 +81,8 @@ const socialImageURL = new URL(
 			<!-- <CardComponent />
 			<AccordionComponent client:load />
 			<Banners client:load /> -->
+			<!-- <HeaderMarketingS client:load/> -->
+			<!-- <HeaderMarketing /> -->
 			<HeaderStore site={site} navigation={navigation}/>
 			<!-- {
 				['bakery','wear', 'hardwarestore'].includes(site.data.type) &&
@@ -92,6 +96,8 @@ const socialImageURL = new URL(
 			
 			<SlideOvers client:load />
 			<ProductQuickviews client:load />
+			<ShoppingCarts url={site.data.info.website} client:load />
+
 			<!-- <Pagination /> -->
 			<slot />
 			

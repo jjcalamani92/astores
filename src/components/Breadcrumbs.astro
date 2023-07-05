@@ -1,4 +1,6 @@
 ---
+import type { Paths } from '@interfaces/page';
+
 // Remove current url path and remove trailing slash if exists
 const currentUrlPath = Astro.url.pathname.replace(/\/+$/, "");
 
@@ -10,7 +12,15 @@ const breadcrumbList = currentUrlPath.split("/").slice(1);
 // replace Posts with Posts (page number)
 breadcrumbList[0] === "posts" &&
   breadcrumbList.splice(0, 2, `Posts (page ${breadcrumbList[1] || 1})`);
+interface Props {
+  paths?: Paths[]
+}
+const { paths } = Astro.props
+// console.log('paths', paths)
+
+const breadcrumbRootPath = paths?.slice(0, breadcrumbList.length - 1).map(breadcrumb => breadcrumb.slug).join("/");
 ---
+
 
 <nav class="breadcrumb" aria-label="breadcrumb">
   <ul>
@@ -18,26 +28,31 @@ breadcrumbList[0] === "posts" &&
       <a href="/">Home</a>
       <span aria-hidden="true">&#62;</span>
     </li>
+    <>
     {
-      breadcrumbList.map((breadcrumb, index) =>
+      paths?.map((breadcrumb, index) =>
         index + 1 === breadcrumbList.length ? (
           <li>
             <span
-              class={`${index > 0 ? "lowercase" : "capitalize"}`}
+              class={`capitalize`}
               aria-current="page"
             >
-              {/* make the last part lowercase in Home > Tags > some-tag */}
-              {breadcrumb}
+              {breadcrumb.name}
             </span>
           </li>
         ) : (
-          <li>
-            <a href={`/${breadcrumb}`}>{breadcrumb}</a>
+        <li>
+            <a href={index !== 0 ? `/${breadcrumbRootPath}` : `/${breadcrumb.slug}`}>
+              {breadcrumb.name}
+            </a>
             <span aria-hidden="true">&#62;</span>
           </li>
         )
       )
     }
+    
+    </>
+
   </ul>
 </nav>
 

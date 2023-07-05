@@ -9,6 +9,7 @@ import PaginationStore from "../../../components/PaginationStore.astro";
 import type { Product } from "@interfaces/product";
 import type { Category } from "@interfaces/category";
 import type { Page } from "@interfaces/pagination";
+import ProductsLayout from "@layouts/ProductsLayout.astro";
 
 const params = Astro.params
 
@@ -39,13 +40,14 @@ export async function getStaticPaths({paginate}:any) {
 }
 const { page } = Astro.props;
 ---
-<Layout
+<ProductsLayout
 	title={category.data.name}
 	description={category.data.description}
   ogImage={category.data.thumbnailUrl}
+  paths={category.data.params.paths}
 >
 <!-- <ListProductW0 page={category} products={page.data}/> -->
 <ListProductW1 page={category} products={page.data}/>
 <PaginationStore page={page} />
 
-</Layout>
+</ProductsLayout>

@@ -71,10 +71,9 @@ const { site, navigation, pages } = Astro.props;
             <div class="group flex items-center p-2">
               <ButtonCart client:load />
               <!-- <is-land  on:save-data class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{getTotalItems()}</is-land> -->
-              <CountCart client:only />
+              <CountCart client:only='react' />
             </div>
 
-            <ShoppingCarts url={site.data.info.website} client:load />
 
           </div>
         </div>
