@@ -26,24 +26,27 @@ export async function getStaticPaths() {
 	).then((response) => response.json());
 
 	const ids = categories0.map((data) => data._id);
-	const idss = eliminarDuplicados(ids);
-
+	
+	// console.log('idssa', idss)
 	const categories1: Category[] = await fetch(
 		`${url}/api/${v}/${type}/query/categories/1/category/siteId?id=${uid}`
 	).then((response) => response.json());
 
-	return idss.map((id) => {
-		const filteredCategories = categories1.filter(
+	function getCategories (id: string) {
+		return categories1.filter(
 			(category) => category.parentId === id
 		);
+	}
+	
+
 		return categories0.map((category0) => ({
 			params: {
 				page: category0.data.params.path[0],
 				category0: category0.data.params.path[1],
 			},
-			props: { category: category0, categories: filteredCategories },
+			props: { category: category0, categories: getCategories(category0._id) },
 		}));
-	});
+	
 }
 const { category, categories } = Astro.props;
 

@@ -25,19 +25,19 @@ export async function getStaticPaths() {
 		`${url}/api/${v}/${type}/query/categories/2/category/siteId?id=${uid}`
 	).then((response) => response.json());
 
-	return idss.map((id) => {
-		const filteredCategories = categories2.filter(
+	function getCategories (id: string) {
+		return categories2.filter(
 			(category) => category.parentId === id
 		);
-		return categories1.map((category1) => ({
-			params: {
-				page: category1.data.params.path[0],
-				category0: category1.data.params.path[1],
-				category1: category1.data.params.path[2],
-			},
-			props: { category: category1, categories: filteredCategories },
-		}));
-	});
+	}
+	return categories1.map((category1) => ({
+		params: {
+			page: category1.data.params.path[0],
+			category0: category1.data.params.path[1],
+			category1: category1.data.params.path[2],
+		},
+		props: { category: category1, categories: getCategories(category1._id) },
+	}));
 }
 const { category, categories } = Astro.props;
 
