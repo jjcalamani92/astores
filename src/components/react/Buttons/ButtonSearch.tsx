@@ -8,7 +8,7 @@ export function ButtonSearch() {
   const $isCartOpen = useStore(isCartOpen);
   return (
     <div className="flex">
-      <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
+      <a href="/search" className="p-2 text-gray-400 hover:text-gray-500">
         <span className="sr-only">Search</span>
         <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
       </a>

@@ -10,9 +10,9 @@ export function CardProduct({ product }: Props) {
 
   return (
     <div className="relative">
-      <div className="absolute top-0 left-0 py-2 px-4 bg-white bg-opacity-50">
+      {/* <div className="absolute top-0 left-0 py-2 px-4 bg-white bg-opacity-50">
         <p className="text-xs leading-3 text-gray-800">New</p>
-      </div>
+      </div> */}
       <div className="relative group">
         <div
           className="flex justify-center items-center opacity-0 bg-gradient-to-t from-gray-800 via-gray-800 to-opacity-30 group-hover:opacity-50 absolute top-0 left-0 h-full w-full"
@@ -34,11 +34,11 @@ export function CardProduct({ product }: Props) {
           </button> */}
         </div>
       </div>
-      <p
+      <a href={`/products/details/${product?._id}/${product?.slug}`}
         className="font-normal dark:text-white  leading-5 text-gray-800 md:mt-6 mt-4"
       >
         {product.data.name}
-      </p>
+      </a>
       <p
         className="font-semibold dark:text-gray-300 text-xl leading-5 text-gray-800 mt-4"
       >
