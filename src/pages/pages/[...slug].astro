@@ -2,21 +2,47 @@
 import CategoriesLayout from "../../layouts/CategoriesLayout.astro";
 import type { Page } from "../../interfaces/page";
 import { url, v, uid, type } from "../../utils/const";
+import { Category } from "../../interfaces/category";
 
 // const params = Astro.params
 // console.log('params', params)
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const pagess: Page[] = await fetch(
+
+  function concatenarElementos(arrOrStr: string | string[]): string {
+  let arr: string[];
+
+  if (typeof arrOrStr === "string") {
+    return arrOrStr;
+  } else {
+    arr = arrOrStr;
+  }
+
+  if (arr.length === 0) {
+    return "";
+  }
+
+  let resultado = arr.join("/");
+
+  return resultado;
+}
+
+  const pages: Page[] = await fetch(
 		`${url}/api/${v}/${type}/query/pages/page/siteId?id=${uid}`
 	).then((response) => response.json());
-  // console.log('pagesss', pagess)
-
   
-  return pagess.map((page) => {
+  const categories0: Category[] = await fetch(
+		`${url}/api/${v}/${type}/query/categories/0/category/siteId?id=${uid}`
+	).then((response) => response.json());
+  
+  const paths = [...pages, ...categories0]
+  // console.log('paths', paths)
+  
+  return paths.map((page) => {
+
     return {
-      params: { slug: page.slug },
+      params: { slug: concatenarElementos(page.data.params.path) },
       props: { page },
     };
   });
