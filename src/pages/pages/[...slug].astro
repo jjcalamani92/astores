@@ -1,11 +1,18 @@
 ---
 import CategoriesLayout from "../../layouts/CategoriesLayout.astro";
+import type { Page } from "../../interfaces/page";
+import { url, v, uid, type } from "../../utils/const";
 
 const params = Astro.params
 // console.log('params', params)
 export const prerender = true;
 
 export async function getStaticPaths() {
+  const pagess: Page[] = await fetch(
+		`${url}/api/${v}/${type}/query/pages/page/siteId?id=${uid}`
+	).then((response) => response.json());
+  console.log('pagesss', pagess)
+
   const pages = [
     {
       slug: undefined,
@@ -23,18 +30,17 @@ export async function getStaticPaths() {
       text: "If you want to learn Astro, you must read this book.",
     },
   ];
-  return pages.map(({ slug, title, text }) => {
+  return pagess.map((page) => {
     return {
-      params: { slug },
-      props: { title, text },
+      params: { slug: page.slug },
+      props: { page },
     };
   });
 }
 
-const { title, text } = Astro.props;
-// console.log('title', title)
-// console.log('text', text)
+const { page } = Astro.props;
+console.log('page', page)
 ---
-<CategoriesLayout title={title}>
-  <h1>{text}</h1>
+<CategoriesLayout title={page.data.name}>
+  <h1>{page.data.description}</h1>
 </CategoriesLayout>
