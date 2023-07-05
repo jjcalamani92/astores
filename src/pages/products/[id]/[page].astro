@@ -2,7 +2,8 @@
 import Layout from "../../../layouts/Layout.astro";
 import { type, uid, url, v } from "../../../utils/const";
 import { getPaths } from "../../../utils/function";
-import ListProductW0 from "../../../components/ListProductW0.astro";
+// import ListProductW0 from "../../../components/ListProductW0.astro";
+import ListProductW1 from "../../../components/ListProductW1.astro";
 import PaginationStore from "../../../components/PaginationStore.astro";
 import type { Product } from "@interfaces/product";
 import type { Category } from "@interfaces/category";
@@ -43,7 +44,8 @@ const { page } = Astro.props;
 	description={category.data.description}
   ogImage={category.data.thumbnailUrl}
 >
-<ListProductW0 page={category} products={page.data}/>
+<!-- <ListProductW0 page={category} products={page.data}/> -->
+<ListProductW1 page={category} products={page.data}/>
 <PaginationStore page={page} />
 
 </Layout>

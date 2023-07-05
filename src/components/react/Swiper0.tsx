@@ -24,15 +24,11 @@ export function Swiper0({images}:Props) {
   return (
     <>
       <Swiper
-        // style={{
-        //   "--swiper-navigation-color": "#fff",
-        //   "--swiper-pagination-color": "#fff",
-        // }}
         spaceBetween={10}
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 mb-2"
+        className="mySwiper2 mb-2 lg:mb-0"
       >
         {
           images.map((image, i) => 
