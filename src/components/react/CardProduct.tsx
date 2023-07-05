@@ -1,5 +1,4 @@
 import type { Product } from '@interfaces/product'
-import React from 'react'
 
 
 interface Props {

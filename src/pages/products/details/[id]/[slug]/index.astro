@@ -8,6 +8,7 @@ import {ProductOverviewsB0} from '../../../../../components/react/ProductOvervie
 import { ProductOverviewsH0 } from '../../../../../components/react/ProductOverviewsH0';
 import  ProductOverviewsW0  from '../../../../../components/ProductOverviewsW0.astro';
 import type { Product } from "../../../../../interfaces/product";
+import Main from '@layouts/Main.astro';
 
 const params = Astro.params;
 
@@ -29,10 +30,10 @@ const { product } = Astro.props;
 
 ---
 <Layout title={product.data.name} description={product.data.description} ogImage={product.data.thumbnailUrl}>
-	<main>
-		<ProductOverviewsW0 product={product} />
+	<Main pageTitle={'Detalles del Producto'}>
+		<ProductOverviewsH0 product={product} client:load />
+		<!-- <ProductOverviewsW0 product={product} /> -->
 		<!-- <ProductOverviewsW0 product={product} client:load /> -->
-		<!-- <ProductOverviewsH0 product={product} client:load /> -->
 		<!-- <ProductOverviewsB0 product={product} client:load /> -->
-	</main>
+	</Main>
 </Layout>
