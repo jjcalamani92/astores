@@ -1,5 +1,6 @@
 ---
 import CategoriesLayout from "../../layouts/CategoriesLayout.astro";
+import ListCategoryW0 from "../../components/ListCategoryW0.astro";
 import type { Page } from "../../interfaces/page";
 import { url, v, uid, type } from "../../utils/const";
 import { Category } from "../../interfaces/category";
@@ -46,18 +47,29 @@ export async function getStaticPaths() {
   
 
   const paths = [...pages, ...categories0, ...categories1, ...categories2]
+
+  function getCategories (id: string) {
+		return paths.filter(
+			(category) => category.parentId === id
+		);
+	}
+
   return paths.filter((page) => page.data.type !== 'product' ).map((page) => {
 
     return {
       params: { slug: concatenarElementos(page.data.params.path) },
-      props: { page },
+      props: { page, categories: getCategories(page._id) },
     };
   });
 }
 
-const { page } = Astro.props;
+const { page, categories } = Astro.props;
 // console.log('page', page)
 ---
 <CategoriesLayout title={page.data.name}>
-  <h1>{page.data.description}</h1>
+  {
+    type.includes("wear") && (
+      <ListCategoryW0 page={page} categories={categories} />
+    )
+  }
 </CategoriesLayout>
