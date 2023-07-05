@@ -1,5 +1,5 @@
 ---
-// export const prerender = true;
+export const prerender = true;
 
 import Layout from '../../../../../layouts/Layout.astro';
 import { url, v, uid, type } from "../../../../../utils/const";
@@ -11,7 +11,7 @@ import type { Product } from "../../../../../interfaces/product";
 
 const params = Astro.params;
 
-export const prerender = true;
+// export const prerender = true;
 
 export async function getStaticPaths() {
   const products:Product[] = await fetch(
