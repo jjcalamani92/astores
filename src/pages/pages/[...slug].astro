@@ -35,8 +35,13 @@ export async function getStaticPaths() {
   const categories0: Category[] = await fetch(
 		`${url}/api/${v}/${type}/query/categories/0/category/siteId?id=${uid}`
 	).then((response) => response.json());
+
+  const categories1: Category[] = await fetch(
+		`${url}/api/${v}/${type}/query/categories/1/category/siteId?id=${uid}`
+	).then((response) => response.json());
   
-  const paths = [...pages, ...categories0]
+
+  const paths = [...pages, ...categories0, ...categories1]
   // console.log('paths', paths)
   
   return paths.map((page) => {
