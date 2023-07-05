@@ -1,0 +1,23 @@
+---
+import Layout from "@layouts/Layout.astro";
+import FAQ from "@components/FAQ.astro";
+import Contact from "@components/Contact.astro";
+import Home from "@components/Home.astro";
+import {SearchBar} from "@components/react/Search";
+import Main from "@layouts/Main.astro";
+import type { Product } from "@interfaces/product";
+import { url, v, uid, type } from "../utils/const";
+
+const products:Product[] = await fetch(
+    `${url}/api/${v}/${type}/query/products/product/siteId?id=${uid}`
+    ).then((response) => response.json());
+// console.log('products', products)
+---
+<Layout title="Search">
+	<Main pageTitle="Search" pageDesc="Search any products ...">
+		
+    <SearchBar client:load searchList={products} />
+  </Main>
+</Layout>
+
+

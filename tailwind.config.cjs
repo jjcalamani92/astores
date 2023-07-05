@@ -73,6 +73,7 @@ module.exports = {
           dark: withOpacity('--dark-primary-color'),
           line: withOpacity('--light-primary-color'),
           fill: withOpacity('--primary-text'),
+          base: withOpacity('--primary-color'),
           accent: withOpacity('--accent-color'),
         },
         
@@ -81,6 +82,7 @@ module.exports = {
       },
       fill: {
         cris: {
+          fill: withOpacity('--fill-color'),
           base: withOpacity('--primary-text'),
           accent: withOpacity('--accent-color'),
         },

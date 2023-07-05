@@ -1,6 +1,5 @@
 import type { Product } from '@interfaces/product'
 import React from 'react'
-import { ButtonProduct0 } from './Button'
 
 
 interface Props {
@@ -27,12 +26,12 @@ export function CardProduct({ product }: Props) {
         <div
           className="absolute bottom-0 p-8 w-full opacity-0 group-hover:opacity-100"
         >
-          <ButtonProduct0 product={product} />
+          {/* <ButtonProduct0 product={product} /> */}
 
-          <button
+          {/* <button
             className="bg-transparent font-medium text-base leading-4 border-2 border-white py-3 w-full mt-2 text-white"
           >Quick View
-          </button>
+          </button> */}
         </div>
       </div>
       <p
