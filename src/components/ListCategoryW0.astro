@@ -26,14 +26,14 @@ const { page, categories } = Astro.props;
             </p>
           </div>
           
-          <div class="grid grid-cols-4 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
               {
                   categories.map((category, i) => (
                       <div
                           class={`${
                               i % 4 === 0
-                                  ? "col-span-2"
-                                  : "col-span-1"
+                                  ? "lg:col-span-2"
+                                  : "lg:col-span-1"
                           } relative group flex justify-center items-center h-[30rem] w-full`}
                       >
                           <img

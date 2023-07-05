@@ -97,10 +97,10 @@ export function MenuMobileStores(props: Props) {
                         </div>
                         {category.categories.map((category0,i) => (
                           <div key={i}>
-                            <p id={`${category.slug}-${category0.slug}-heading-mobile`} className="font-medium text-gray-900">
+                            <a href={category0.data.type === 'category' ? `/${category.slug}/${category0.slug}` : `/products/${category0._id}/1`} id={`${category.slug}-${category0.slug}-heading-mobile`} className="font-medium text-gray-900">
                               {category0.data.name}
 
-                            </p>
+                            </a>
                             <ul
                               role="list"
                               aria-labelledby={`${category.slug}-${category0.slug}-heading-mobile`}
@@ -108,7 +108,7 @@ export function MenuMobileStores(props: Props) {
                             >
                               {category0.categories.map((category1,) => (
                                 <li key={category1.slug} className="flow-root">
-                                  <a href={`/${category.slug}/${category0.slug}/${category1.slug}`} className="-m-2 block p-2 text-gray-500">
+                                  <a href={category1.data.type === 'category' ? `/${category.slug}/${category0.slug}/${category1.slug}` : `/products/${category1._id}/1`} className="-m-2 block p-2 text-gray-500">
                                   {category1.data.name}
 
                                   </a>
