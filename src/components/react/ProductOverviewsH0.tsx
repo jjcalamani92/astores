@@ -8,6 +8,7 @@ import { addCartItem, } from '@stores/cartStores'
 import { RadioGroup } from '@headlessui/react'
 import { type } from '@utils/const'
 import { useState } from 'react'
+import { MarkdownPreview } from './MarkdownPreview'
 
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
@@ -103,7 +104,8 @@ export function ProductOverviewsH0(props: Props) {
           <div className="mt-4 lg:row-span-3 lg:mt-0 space-y-3">
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{props.product.data.name}</h1>
                 <div className="prose">
-                  <ReactMarkdown children={props.product.data.description}  />
+                 <MarkdownPreview text={props.product.data.description}/>
+                  
                   {/* {props.product.data.description} */}
                   </div>
             <p className="text-3xl tracking-tight text-gray-900"> Bs. {props.product.data.price}</p>
@@ -257,7 +259,7 @@ export function ProductOverviewsH0(props: Props) {
                 <div className="mt-4 space-y-6">
                   <div className='prose'>
 
-                    <ReactMarkdown children={props.product.data.details}  />
+                    <MarkdownPreview text={props.product.data.details}/>
                   </div>
                   
                 </div>

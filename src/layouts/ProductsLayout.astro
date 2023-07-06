@@ -3,6 +3,8 @@ import type { Paths } from "@interfaces/page";
 import Layout from "./Layout.astro";
 import Main from "./Main.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
+import type { Site } from "@interfaces/site";
+import { type, uid, url, v } from '@utils/const';
 
 export interface Props {
   title: string;
@@ -10,11 +12,14 @@ export interface Props {
   ogImage?: string
   paths?: Paths[]
 }
+const site: Site = await fetch(
+  `${url}/api/${v}/${type}/query/sites/${uid}`
+).then((response) => response.json());
 
 const { title, description, ogImage, paths } = Astro.props;
 ---
 
-<Layout title={`${title} | "siteName"`} description={description} ogImage={ogImage}>
+<Layout title={`${title} | ${site.data.info.name}`} description={description} ogImage={ogImage}>
   <Breadcrumbs paths={paths} />
   
   <Main pageTitle={title} >

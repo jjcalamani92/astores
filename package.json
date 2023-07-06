@@ -37,6 +37,7 @@
     "react-dom": "^18.0.0",
     "react-markdown": "^8.0.7",
     "react-syntax-highlighter": "^15.5.0",
+    "rehype-raw": "^6.1.1",
     "svelte": "^4.0.0",
     "swiper": "^9.4.1",
     "tailwind-scrollbar": "^3.0.0",
