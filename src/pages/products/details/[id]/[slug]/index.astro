@@ -30,7 +30,7 @@ const { product } = Astro.props;
 ---
 <Layout title={product.data.name} description={product.data.description} ogImage={product.data.thumbnailUrl}>
 	<Breadcrumbs paths={product.data.tags}/>
-	<Main pageTitle={'Detalles del Producto'}>
+	<Main pageTitle={product.data.name}>
 		<ProductOverviewsH0 product={product} client:load />
 		<!-- <ProductOverviewsW0 product={product} /> -->
 		<!-- <ProductOverviewsW0 product={product} client:load /> -->

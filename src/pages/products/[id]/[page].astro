@@ -10,6 +10,8 @@ import type { Product } from "@interfaces/product";
 import type { Category } from "@interfaces/category";
 import type { Page } from "@interfaces/pagination";
 import ProductsLayout from "@layouts/ProductsLayout.astro";
+import ListProductW0 from "@components/ListProductW0.astro";
+import ListProductF0 from "@components/ListProductF0.astro";
 
 const params = Astro.params
 
@@ -47,7 +49,8 @@ const { page } = Astro.props;
   paths={category.data.params.paths}
 >
 <!-- <ListProductW0 page={category} products={page.data}/> -->
-<ListProductW1 page={category} products={page.data}/>
+<ListProductF0 page={category} products={page.data}/>
+<!-- <ListProductW1 page={category} products={page.data}/> -->
 <PaginationStore page={page} />
 
 </ProductsLayout>

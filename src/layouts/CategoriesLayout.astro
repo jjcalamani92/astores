@@ -12,7 +12,7 @@ export interface Props {
 const { title, paths } = Astro.props;
 ---
 
-<Layout title={`${title} | "siteName"`}>
+<Layout title={`${title}`}>
   <Breadcrumbs paths={paths} />
   <Main pageTitle={title}>
     <slot />

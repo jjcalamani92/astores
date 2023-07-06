@@ -2,11 +2,9 @@
 import { StarIcon } from '@heroicons/react/20/solid'
 import type { Product } from '@interfaces/product'
 import { Swiper0 } from './Swiper0'
-import ReactMarkdown from 'react-markdown'
 import { isCartOpen } from '@stores/ui'
 import { addCartItem, } from '@stores/cartStores'
 import { RadioGroup } from '@headlessui/react'
-import { type } from '@utils/const'
 import { useState } from 'react'
 import { MarkdownPreview } from './MarkdownPreview'
 
@@ -76,6 +74,7 @@ export function ProductOverviewsH0(props: Props) {
   // console.log('props', props)
   const [selectedColor, setSelectedColor] = useState(product2.colors[0])
   const [selectedSize, setSelectedSize] = useState(product2.sizes[2])
+  
   function addToCart(e: any) {
     e.preventDefault();
     isCartOpen.set(true);
@@ -92,9 +91,9 @@ export function ProductOverviewsH0(props: Props) {
 
   return (
     <div className="bg-white">
-      <div className="pt-6">
+      <div className="">
         {/* Product info */}
-        <div className="mx-auto max-w-2xl  pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+        <div className="mx-auto max-w-2xl  sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
             <Swiper0 images={props.product.data.images} />
             
@@ -102,7 +101,7 @@ export function ProductOverviewsH0(props: Props) {
 
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0 space-y-3">
-            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{props.product.data.name}</h1>
+            {/* <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{props.product.data.name}</h1> */}
                 <div className="prose">
                  <MarkdownPreview text={props.product.data.description}/>
                   
@@ -135,7 +134,7 @@ export function ProductOverviewsH0(props: Props) {
 
             <form className="mt-10" onSubmit={addToCart}>
             {
-                type.includes('wear') &&
+                props.product.data.colors &&
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Color</h3>
 
@@ -174,7 +173,7 @@ export function ProductOverviewsH0(props: Props) {
 
               {/* Sizes */}
               {
-                type.includes('wear') &&
+                props.product.data.sizes &&
               <div className="mt-10">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-medium text-gray-900">Size</h3>
@@ -246,14 +245,14 @@ export function ProductOverviewsH0(props: Props) {
             </form>
           </div>
 
-          <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+          <div className="py-6 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
             {/* Description and details */}
             
 
             
             {
               props.product.data.details &&
-              <div className="mt-10">
+              <div className="">
                 <h2 className="font-medium text-gray-900">Details</h2>
 
                 <div className="mt-4 space-y-6">

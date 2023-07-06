@@ -27,6 +27,7 @@ export interface DataProduct {
     name: string
     slug: string
   }[]
+  colors: any
   images: string[]
   updateDate: UpdateDate
 }

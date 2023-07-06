@@ -1,0 +1,28 @@
+---
+import type { Navigation } from "@interfaces/paths";
+import FlyoutMenusW from "./FlyoutMenusW.astro";
+import { type, uid, url, v } from '@utils/const';
+
+const navigation:Navigation[] = await fetch(
+`${url}/api/${v}/${type}/query/pages/page/navigation?siteId=${uid}`
+).then((response) => response.json());
+
+---
+
+<div class="hidden lg:ml-8 lg:block lg:self-stretch z-10">
+  <div class="flex h-full space-x-8">
+    {
+      navigation.map(data => (
+
+        <FlyoutMenusW navigation={data} />
+      ))
+    }
+  
+    
+
+    <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Company</a>
+    <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Stores</a>
+  </div>
+</div>
+
+

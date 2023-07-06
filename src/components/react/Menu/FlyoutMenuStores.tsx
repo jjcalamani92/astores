@@ -17,7 +17,7 @@ interface Props {
 
 export function FlyoutMenuStores(props:Props) {
   return (
-    <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch ">
+    <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   {props.navigation.map((category, i) => (
                     <Popover key={i} className="flex">
