@@ -28,7 +28,7 @@ export function Swiper0({images}:Props) {
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 mb-2 lg:mb-0"
+        className="mySwiper2 mb-2 "
       >
         {
           images.map((image, i) => 

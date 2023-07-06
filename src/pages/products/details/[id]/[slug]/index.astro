@@ -9,8 +9,7 @@ import { ProductOverviewsH0 } from '../../../../../components/react/ProductOverv
 import  ProductOverviewsW0  from '../../../../../components/ProductOverviewsW0.astro';
 import type { Product } from "../../../../../interfaces/product";
 import Main from '@layouts/Main.astro';
-
-const params = Astro.params;
+import Breadcrumbs from '@components/Breadcrumbs.astro';
 
 // export const prerender = true;
 
@@ -27,9 +26,10 @@ const { product } = Astro.props;
 // const product = await fetch(
 //   `${url}/api/${v}/${type}/query/products/${params.id}`
 // ).then((response) => response.json());
-
+// console.log('product', product.data.tags)
 ---
 <Layout title={product.data.name} description={product.data.description} ogImage={product.data.thumbnailUrl}>
+	<Breadcrumbs paths={product.data.tags}/>
 	<Main pageTitle={'Detalles del Producto'}>
 		<ProductOverviewsH0 product={product} client:load />
 		<!-- <ProductOverviewsW0 product={product} /> -->

@@ -16,7 +16,7 @@ interface Props {
 }
 
 export function ProductOverviewsB0(props: Props) {
-  console.log('props', props)
+  // console.log('props', props)
   function addToCart(e: any) {
     e.preventDefault();
     isCartOpen.set(true);

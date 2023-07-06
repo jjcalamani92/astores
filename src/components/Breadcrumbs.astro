@@ -26,7 +26,7 @@ const breadcrumbRootPath = paths?.slice(0, breadcrumbList.length - 1).map(breadc
   <ul>
     <li>
       <a href="/">Home</a>
-      <span aria-hidden="true">&#62;</span>
+      <span aria-hidden="true">/</span>
     </li>
     <>
     {
@@ -45,7 +45,7 @@ const breadcrumbRootPath = paths?.slice(0, breadcrumbList.length - 1).map(breadc
             <a href={index !== 0 ? `/${breadcrumbRootPath}` : `/${breadcrumb.slug}`}>
               {breadcrumb.name}
             </a>
-            <span aria-hidden="true">&#62;</span>
+            <span aria-hidden="true">/</span>
           </li>
         )
       )
