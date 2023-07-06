@@ -49,8 +49,16 @@ const { page } = Astro.props;
   paths={category.data.params.paths}
 >
 <!-- <ListProductW0 page={category} products={page.data}/> -->
-<ListProductF0 page={category} products={page.data}/>
-<!-- <ListProductW1 page={category} products={page.data}/> -->
+{
+    type.includes("wear") && (
+      <ListProductW1 page={category} products={page.data}/>
+    )
+  }
+{
+    type.includes("furniture") && (
+      <ListProductF0 page={category} products={page.data}/>
+    )
+  }
 <PaginationStore page={page} />
 
 </ProductsLayout>

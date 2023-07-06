@@ -1,25 +1,47 @@
 ---
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import type { Paths } from "@interfaces/page";
+import { type } from "@utils/const";
 
 export interface Props {
   pageTitle: string;
   pageDesc?: string;
+  ogImage?: string
 }
 
-const { pageTitle, pageDesc,  } = Astro.props;
+const { pageTitle, pageDesc, ogImage } = Astro.props;
 ---
 
 <main >
-  <div
-    class="bg-gradient-to-r from-cris-dark via-cris-accent to-cris-dark text-center lg:py-10 md:py-8 py-6"
-  >
-    <h1
-      class="w-10/12 mx-auto md:w-full font-semibold lg:text-4xl text-3xl lg:leading-9 md:leading-7 leading-9 text-center text-cris-inverted"
+  {
+    type.includes('wear') &&
+    <div
+      class="bg-gradient-to-r from-cris-dark via-cris-accent to-cris-dark text-center lg:py-10 md:py-8 py-6"
     >
-      {pageTitle}
-    </h1>
-  </div>
+      <h1
+        class="w-10/12 mx-auto md:w-full font-semibold lg:text-4xl text-3xl lg:leading-9 md:leading-7 leading-9 text-center text-cris-inverted"
+      >
+        {pageTitle}
+      </h1>
+    </div>
+  }
+{
+  type.includes('furniture') &&
+  <div class="flex flex-col justify-center">
+    <div class="relative">
+        <img class="hidden sm:block w-full object-cover h-60 max-h-full bg-no-repeat bg-top " src={ogImage || "https://i.ibb.co/HxXSY0j/jason-wang-Nx-Awry-Abt-Iw-unsplash-1-1.png"} alt="sofa" />
+        <img class="sm:hidden w-full object-cover h-44 max-h-full " src={ogImage || "https://i.ibb.co/HxXSY0j/jason-wang-Nx-Awry-Abt-Iw-unsplash-1-1.png"} alt="sofa" />
+        
+        
+        
+        </div>
+        <div class=" justify-start py-6">
+          <p class=" text-center  text-3xl sm:text-4xl font-semibold leading-9 text-cris-dark">{pageTitle}</p>
+        </div>
+</div>
+}
+
+  
   <!-- <p>{pageDesc}</p> -->
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 

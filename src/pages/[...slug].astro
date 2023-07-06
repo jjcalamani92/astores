@@ -66,10 +66,11 @@ export async function getStaticPaths() {
 const { page, categories } = Astro.props;
 // console.log('page', page)
 ---
-<CategoriesLayout title={page.data.name} paths={page.data.params.paths}>
-  {
+<CategoriesLayout title={page.data.name} ogImage={page.data.thumbnailUrl} paths={page.data.params.paths}>
+  <ListCategoryW0 page={page} categories={categories} />
+  <!-- {
     type.includes("wear") && (
       <ListCategoryW0 page={page} categories={categories} />
     )
-  }
+  } -->
 </CategoriesLayout>

@@ -14,7 +14,7 @@ export interface Props {
 const { title, description, ogImage, paths } = Astro.props;
 ---
 
-<Layout title={`${title} | "siteName"`} description={description} ogImage={ogImage}>
+<Layout title={title} description={description} ogImage={ogImage}>
   <Breadcrumbs paths={paths} />
   
   <Main pageTitle={title} >
