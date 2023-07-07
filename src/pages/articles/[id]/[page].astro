@@ -38,7 +38,7 @@ export async function getStaticPaths({paginate}:any) {
     const filteredProducts = articles.filter((post) => post.parentId === id);
     return paginate(filteredProducts, {
       params: { id },
-      pageSize: 8
+      pageSize: 3
     });
   });
 }
