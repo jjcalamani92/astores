@@ -5,6 +5,7 @@ import { useStore } from '@nanostores/react'
 import { isCartOpen, isMenuOpen } from '@stores/ui'
 import type { Navigation } from '@interfaces/paths'
 import { getTotalItems, shoppingCart } from '@stores/cartStores'
+import type { Page } from '@interfaces/page'
 
 function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(' ')
@@ -13,13 +14,14 @@ function classNames(...classes:string[]) {
 interface Props {
   
   navigation: Navigation[]
+  pages?: Page[]
 }
 
 export function FlyoutMenuStores(props:Props) {
   return (
     <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
-                  {props.navigation.map((category, i) => (
+                  {props.navigation.filter((category, i) => category.data.type === 'category').map((category, i) => (
                     <Popover key={i} className="flex">
                       {({ open }) => (
                         <>
@@ -113,15 +115,15 @@ export function FlyoutMenuStores(props:Props) {
                     </Popover>
                   ))}
 
-                  {/* {navigation.pages.map((page) => (
+                  {props.pages?.filter(page => page.data.type !=='category').map((page, i) => (
                     <a
-                      key={page.name}
-                      href={page.href}
+                      key={i}
+                      href={`/${page.slug}`}
                       className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
-                      {page.name}
+                      {page.data.name}
                     </a>
-                  ))} */}
+                  ))}
                 </div>
               </Popover.Group>
   )
