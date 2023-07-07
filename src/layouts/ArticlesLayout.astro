@@ -1,0 +1,24 @@
+---
+import type { Paths } from "@interfaces/page";
+import Layout from "./Layout.astro";
+import Main from "./Main.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string
+  paths?: Paths[]
+}
+
+const { title, description, ogImage, paths } = Astro.props;
+---
+
+<Layout title={title} description={description} ogImage={ogImage}>
+  <Breadcrumbs paths={paths} />
+
+  <Main pageTitle={title} ogImage={ogImage}>
+    <slot />
+  </Main>
+  
+</Layout>

@@ -1,0 +1,67 @@
+---
+export const prerender = true;
+import Layout from "../../../layouts/Layout.astro";
+import { type, uid, url, v } from "../../../utils/const";
+import { getPaths } from "../../../utils/function";
+// import ListProductW0 from "../../../components/ListProductW0.astro";
+import ListProductW1 from "../../../components/ListProductW1.astro";
+import PaginationStore from "../../../components/PaginationStore.astro";
+import type { Product } from "@interfaces/product";
+import type { Category } from "@interfaces/category";
+import type { Page } from "@interfaces/pagination";
+import ProductsLayout from "@layouts/ProductsLayout.astro";
+import ListProductW0 from "@components/ListProductW0.astro";
+import ListProductF0 from "@components/ListProductF0.astro";
+import type { Article } from "@interfaces/article";
+import ListArticlesP0 from "@components/ListArticlesP0.astro";
+
+const params = Astro.params
+
+const category: Category = await fetch(
+	`${url}/api/${v}/${type}/query/categories/category/${params.id}`
+).then((response) => response.json());
+
+
+export async function getStaticPaths({paginate}:any) {
+  function eliminarDuplicados(array:string[]) {
+    return [...new Set(array)];
+  }
+  
+  const articles: Article[] = await fetch(
+	`${url}/api/${v}/${type}/query/articles/article/siteId?id=${uid}`
+).then((response) => response.json());
+
+  const ids = articles.map(data => (data.parentId))
+  const idss = eliminarDuplicados(ids)
+  // console.log('idss', idss)
+  return idss.map((id) => {
+    const filteredProducts = articles.filter((post) => post.parentId === id);
+    return paginate(filteredProducts, {
+      params: { id },
+      pageSize: 8
+    });
+  });
+}
+const { page } = Astro.props;
+---
+<ProductsLayout
+	title={category.data.name}
+	description={category.data.description}
+  ogImage={category.data.thumbnailUrl}
+  paths={category.data.params.paths}
+>
+<!-- <ListProductW0 page={category} products={page.data}/> -->
+<!-- {
+    type.includes("wear") && (
+      <ListProductW1 page={category} products={page.data}/>
+    )
+  } -->
+{
+    type.includes("furniture") && (
+      <ListArticlesP0 page={category} articles={page.data}/>
+    )
+  }
+
+<PaginationStore page={page} />
+
+</ProductsLayout>

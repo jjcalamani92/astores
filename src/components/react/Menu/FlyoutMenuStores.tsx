@@ -118,7 +118,7 @@ export function FlyoutMenuStores(props:Props) {
                   {props.pages?.filter(page => page.data.type !=='category').map((page, i) => (
                     <a
                       key={i}
-                      href={`/${page.slug}`}
+                      href={page.data.type === 'blog' ? `/articles/${page._id}/1` : `/${page.slug}`}
                       className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
                       {page.data.name}
